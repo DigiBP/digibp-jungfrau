@@ -1,2 +1,2 @@
-# jungfrau
+# Digibp-jungfrau
 Add description of the project...
