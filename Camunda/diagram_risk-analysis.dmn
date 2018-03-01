@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/1.0" id="definitions_07ru1sh" name="definitions" namespace="http://camunda.org/schema/1.0/dmn">
+  <decision id="decision" name="Risk analysis">
+    <extensionElements>
+      <biodi:bounds x="200" y="200" width="180" height="80" />
+    </extensionElements>
+    <decisionTable id="decisionTable">
+      <input id="input1" label="last operation">
+        <inputExpression id="inputExpression1" typeRef="date">
+          <text></text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_14x1e1k" label="did complications occur?">
+        <inputExpression id="LiteralExpression_0o4oolv" typeRef="boolean" />
+      </input>
+      <input id="InputClause_0oi0g1z" label="age">
+        <inputExpression id="LiteralExpression_08vcqrt" typeRef="integer" />
+      </input>
+      <input id="InputClause_1jx969y" label="cause">
+        <inputExpression id="LiteralExpression_0iac6vd" typeRef="string" />
+        <inputValues id="UnaryTests_1dqawj4">
+          <text><![CDATA["accident","illness"]]></text>
+        </inputValues>
+      </input>
+      <output id="output1" label="risk" name="" typeRef="boolean" />
+      <rule id="row-67205082-1">
+        <description></description>
+        <inputEntry id="UnaryTests_0kiiwbk">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1d7k438">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0vpjchu">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0g1b1pw">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1bm80d8">
+          <text></text>
+        </outputEntry>
+      </rule>
+      <rule id="row-67205082-2">
+        <inputEntry id="UnaryTests_0o37kvc">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_068yg1d">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1bndoeh">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0jy0qgm">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1bnrdmh">
+          <text></text>
+        </outputEntry>
+      </rule>
+      <rule id="row-67205082-3">
+        <inputEntry id="UnaryTests_1agnn7v">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1xfdj86">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0l74pho">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0pyi1ky">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1udf26n">
+          <text></text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>
