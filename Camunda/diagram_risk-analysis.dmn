@@ -4,75 +4,221 @@
     <extensionElements>
       <biodi:bounds x="200" y="200" width="180" height="80" />
     </extensionElements>
-    <decisionTable id="decisionTable">
-      <input id="input1" label="last operation">
-        <inputExpression id="inputExpression1" typeRef="date">
+    <decisionTable id="decisionTable" hitPolicy="FIRST">
+      <input id="InputClause_1jx969y" label="Addictions">
+        <inputExpression id="LiteralExpression_0iac6vd" typeRef="string" />
+        <inputValues id="UnaryTests_1cf2mat">
+          <text><![CDATA["Smoker","Alcohol","Drugs"]]></text>
+        </inputValues>
+      </input>
+      <input id="InputClause_1vh9pz5" label="Health conditions">
+        <inputExpression id="LiteralExpression_00ymok4" typeRef="string" />
+        <inputValues id="UnaryTests_09q7fk8">
+          <text><![CDATA["Weak immun system","cancer","Genetical defects"]]></text>
+        </inputValues>
+      </input>
+      <input id="input1" label="Number of operations in past 10 years">
+        <inputExpression id="inputExpression1" typeRef="integer">
           <text></text>
         </inputExpression>
       </input>
-      <input id="InputClause_14x1e1k" label="did complications occur?">
-        <inputExpression id="LiteralExpression_0o4oolv" typeRef="boolean" />
+      <input id="InputClause_0cjnxrj" label="How often do you go to the doctor per year?">
+        <inputExpression id="LiteralExpression_1t2l470" typeRef="integer" />
       </input>
-      <input id="InputClause_0oi0g1z" label="age">
-        <inputExpression id="LiteralExpression_08vcqrt" typeRef="integer" />
+      <input id="InputClause_0wtq297" label="Do you take regularly medicants?">
+        <inputExpression id="LiteralExpression_1bzfiho" typeRef="boolean" />
       </input>
-      <input id="InputClause_1jx969y" label="cause">
-        <inputExpression id="LiteralExpression_0iac6vd" typeRef="string" />
-        <inputValues id="UnaryTests_1dqawj4">
-          <text><![CDATA["accident","illness"]]></text>
+      <input id="InputClause_1ln3ugz" label="Age">
+        <inputExpression id="LiteralExpression_0gdlyvs" typeRef="integer" />
+      </input>
+      <input id="InputClause_1etednt" label="BMI">
+        <inputExpression id="LiteralExpression_1il5qde" typeRef="integer" />
+      </input>
+      <input id="InputClause_1n2g7vc" label="Activity level (Sport)">
+        <inputExpression id="LiteralExpression_1qabvrd" typeRef="string" />
+        <inputValues id="UnaryTests_07xxz7g">
+          <text><![CDATA["never","rarely","often","very often"]]></text>
         </inputValues>
       </input>
-      <output id="output1" label="risk" name="" typeRef="boolean" />
+      <output id="output1" label="risk level" name="" typeRef="integer" />
       <rule id="row-67205082-1">
-        <description></description>
-        <inputEntry id="UnaryTests_0kiiwbk">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_1d7k438">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_0vpjchu">
-          <text></text>
-        </inputEntry>
+        <description>Kerngesund</description>
         <inputEntry id="UnaryTests_0g1b1pw">
           <text></text>
         </inputEntry>
+        <inputEntry id="UnaryTests_0sg2b59">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0kiiwbk">
+          <text><![CDATA[< 1]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1fut0aw">
+          <text><![CDATA[< 2]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_126mn8r">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0305r44">
+          <text><![CDATA[< 30]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0x28nv1">
+          <text>[15..28]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_18wrd2a">
+          <text><![CDATA["very often", "often"]]></text>
+        </inputEntry>
         <outputEntry id="LiteralExpression_1bm80d8">
-          <text></text>
-        </outputEntry>
-      </rule>
-      <rule id="row-67205082-2">
-        <inputEntry id="UnaryTests_0o37kvc">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_068yg1d">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_1bndoeh">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_0jy0qgm">
-          <text></text>
-        </inputEntry>
-        <outputEntry id="LiteralExpression_1bnrdmh">
-          <text></text>
+          <text>1</text>
         </outputEntry>
       </rule>
       <rule id="row-67205082-3">
+        <description>ungesunde Lebensweise</description>
+        <inputEntry id="UnaryTests_0pyi1ky">
+          <text><![CDATA["Smoker", "Alcohol"]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0yseqzv">
+          <text></text>
+        </inputEntry>
         <inputEntry id="UnaryTests_1agnn7v">
           <text></text>
         </inputEntry>
-        <inputEntry id="UnaryTests_1xfdj86">
+        <inputEntry id="UnaryTests_17tdv8a">
           <text></text>
         </inputEntry>
-        <inputEntry id="UnaryTests_0l74pho">
+        <inputEntry id="UnaryTests_0f1nfeq">
           <text></text>
         </inputEntry>
-        <inputEntry id="UnaryTests_0pyi1ky">
+        <inputEntry id="UnaryTests_0ikc0bo">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0qno7uh">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0cucuuj">
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1udf26n">
+          <text>2</text>
+        </outputEntry>
+      </rule>
+      <rule id="row-67205082-2">
+        <description>Drogenabhängifer</description>
+        <inputEntry id="UnaryTests_0jy0qgm">
+          <text><![CDATA["Drugs"]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_062rxux">
           <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0o37kvc">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_07r6tpr">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1v16vsp">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0blmpqg">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_08c2ug4">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_05ghmy6">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1bnrdmh">
+          <text>3</text>
+        </outputEntry>
+      </rule>
+      <rule id="row-777447978-1">
+        <description>Fettleibigkeit</description>
+        <inputEntry id="UnaryTests_13ymgm2">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ia639k">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0o7f4fg">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1vqyczk">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1elo8ga">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_057n6t2">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_03y3j44">
+          <text><![CDATA[> 28]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_198caun">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0dy94dh">
+          <text>2.5</text>
+        </outputEntry>
+      </rule>
+      <rule id="row-777447978-2">
+        <description>Magersucht</description>
+        <inputEntry id="UnaryTests_08uuf8j">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1jzl3rd">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1vmvwj3">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1fe6owf">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1w59qr3">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0fr2suc">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0x3op4m">
+          <text><![CDATA[< 15]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_15cwik8">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1a02fah">
+          <text>2.5</text>
+        </outputEntry>
+      </rule>
+      <rule id="row-777447978-3">
+        <description>unclear, need expert check</description>
+        <inputEntry id="UnaryTests_1g0axgb">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_03jrah0">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1pzznsj">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0m1pj5u">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_023bo12">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_02sdtq8">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_18ce5zs">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_18hhqov">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1dre14d">
+          <text>3</text>
         </outputEntry>
       </rule>
     </decisionTable>
