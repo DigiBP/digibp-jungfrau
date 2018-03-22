@@ -20,8 +20,8 @@
     <bpmn:startEvent id="StartEvent_1" name="Insurance-request" camunda:initiator="Message-Insurance-request">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="ID-Name" label="Name" type="string" />
-          <camunda:formField id="ID-Birthday" label="Birthday" type="date" />
+          <camunda:formField id="Name" label="Name" type="string" />
+          <camunda:formField id="Birthday" label="Birthday" type="date" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:outgoing>SequenceFlow_1f4cvpm</bpmn:outgoing>
@@ -30,8 +30,8 @@
     <bpmn:userTask id="Task_10d92yl" name="ask for personal data" camunda:candidateGroups="Chatbot">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="ID-Name" label="Name" type="string" />
-          <camunda:formField id="ID-Birthday" label="Birthday" type="date" />
+          <camunda:formField id="Name" label="Name" type="string" />
+          <camunda:formField id="Birthday" label="Birthday" type="date" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_1f4cvpm</bpmn:incoming>
@@ -40,8 +40,8 @@
     <bpmn:userTask id="Task_0yuv8gc" name="evaluate customer need">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="ID-Name" label="Name" type="string" />
-          <camunda:formField id="ID-Birthday" label="Birthday" type="date" />
+          <camunda:formField id="Name" label="Name" type="string" />
+          <camunda:formField id="Birthday" label="Birthday" type="date" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0hzjf01</bpmn:incoming>
