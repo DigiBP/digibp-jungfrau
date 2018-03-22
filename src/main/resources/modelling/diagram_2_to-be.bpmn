@@ -17,7 +17,7 @@
     </bpmn:laneSet>
     <bpmn:sequenceFlow id="SequenceFlow_1f4cvpm" sourceRef="StartEvent_1" targetRef="Task_10d92yl" />
     <bpmn:sequenceFlow id="SequenceFlow_0hzjf01" sourceRef="Task_10d92yl" targetRef="Task_0yuv8gc" />
-    <bpmn:startEvent id="StartEvent_1" name="Insurance-request" camunda:formKey="Key1" camunda:initiator="Message-Insurance-request">
+    <bpmn:startEvent id="StartEvent_1" name="Insurance-request" camunda:initiator="Message-Insurance-request">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="ID-Name" label="Name" type="string" />
@@ -27,7 +27,7 @@
       <bpmn:outgoing>SequenceFlow_1f4cvpm</bpmn:outgoing>
       <bpmn:messageEventDefinition messageRef="Message_1y0qwtl" />
     </bpmn:startEvent>
-    <bpmn:userTask id="Task_10d92yl" name="ask for personal data" camunda:formKey="Key2" camunda:candidateGroups="Chatbot">
+    <bpmn:userTask id="Task_10d92yl" name="ask for personal data" camunda:candidateGroups="Chatbot">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="ID-Name" label="Name" type="string" />
