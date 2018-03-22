@@ -30,8 +30,14 @@
     <bpmn:userTask id="Task_10d92yl" name="ask for personal data" camunda:candidateGroups="Chatbot">
       <bpmn:extensionElements>
         <camunda:formData>
+          <camunda:formField id="Gender" label="Gender" type="enum">
+            <camunda:value id="Value_2tpd71l" name="female" />
+            <camunda:value id="Value_1fmfng0" name="male" />
+          </camunda:formField>
           <camunda:formField id="Name" label="Name" type="string" />
+          <camunda:formField id="FirstName" label="FirstName" type="string" />
           <camunda:formField id="Birthday" label="Birthday" type="date" />
+          <camunda:formField id="ZipCode" label="ZipCode" type="long" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_1f4cvpm</bpmn:incoming>
@@ -40,8 +46,25 @@
     <bpmn:userTask id="Task_0yuv8gc" name="evaluate customer need">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="Name" label="Name" type="string" />
-          <camunda:formField id="Birthday" label="Birthday" type="date" />
+          <camunda:formField id="Model" label="Model" type="enum">
+            <camunda:value id="Value_0omu3e2" name="Telmed" />
+            <camunda:value id="Value_1l2n29r" name="Family-doctor / HMO" />
+            <camunda:value id="Value_38oscqq" name="Free choice of doctor" />
+          </camunda:formField>
+          <camunda:formField id="Accident" label="Accident" type="enum">
+            <camunda:value id="Value_0eae7ie" name="with" />
+            <camunda:value id="Value_25r9nsi" name="without" />
+          </camunda:formField>
+          <camunda:formField id="Hospitalisation" label="Hospitalisation" type="enum">
+            <camunda:value id="Value_1417ea5" name="general" />
+            <camunda:value id="Value_2rsn2o8" name="semi-private" />
+            <camunda:value id="Value_1np2h0m" name="private" />
+          </camunda:formField>
+          <camunda:formField id="SupplementaryInsurance" label="SupplementaryInsurance" type="enum">
+            <camunda:value id="Value_32mh8uc" name="Light" />
+            <camunda:value id="Value_1kdpt2k" name="Classic" />
+            <camunda:value id="Value_2pouhe1" name="Medical Private" />
+          </camunda:formField>
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0hzjf01</bpmn:incoming>
