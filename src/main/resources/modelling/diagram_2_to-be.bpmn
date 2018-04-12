@@ -17,6 +17,8 @@
         <bpmn:flowNodeRef>ExclusiveGateway_05sja2e</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_15icet2</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_00d4fkl</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_027y9hs</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_0iiozuo</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_0kdk1hq" name="Expert" />
     </bpmn:laneSet>
@@ -105,6 +107,7 @@
     <bpmn:sequenceFlow id="SequenceFlow_165xtbx" sourceRef="Task_1o642tj" targetRef="ExclusiveGateway_05sja2e" />
     <bpmn:task id="Task_15icet2" name="create offer">
       <bpmn:incoming>SequenceFlow_0jf8hel</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1wzmyls</bpmn:outgoing>
     </bpmn:task>
     <bpmn:sequenceFlow id="SequenceFlow_0jf8hel" name="no" sourceRef="ExclusiveGateway_05sja2e" targetRef="Task_15icet2">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${riskCheckNeeded == false}</bpmn:conditionExpression>
@@ -112,9 +115,18 @@
     <bpmn:sequenceFlow id="SequenceFlow_1ot23do" name="yes" sourceRef="ExclusiveGateway_05sja2e" targetRef="Task_00d4fkl">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${riskCheckNeeded == true}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:businessRuleTask id="Task_00d4fkl" name="evaluate risk analysis">
+    <bpmn:businessRuleTask id="Task_00d4fkl" name="evaluate risk analysis" camunda:resultVariable="riskDecision" camunda:decisionRef="risk_analysis" camunda:mapDecisionResult="singleEntry">
       <bpmn:incoming>SequenceFlow_1ot23do</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0bqiaaw</bpmn:outgoing>
     </bpmn:businessRuleTask>
+    <bpmn:endEvent id="EndEvent_027y9hs">
+      <bpmn:incoming>SequenceFlow_1wzmyls</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_1wzmyls" sourceRef="Task_15icet2" targetRef="EndEvent_027y9hs" />
+    <bpmn:endEvent id="EndEvent_0iiozuo">
+      <bpmn:incoming>SequenceFlow_0bqiaaw</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0bqiaaw" sourceRef="Task_00d4fkl" targetRef="EndEvent_0iiozuo" />
   </bpmn:process>
   <bpmn:process id="Process_15n0e7j" isExecutable="false">
     <bpmn:laneSet />
@@ -220,6 +232,32 @@
       <bpmndi:BPMNShape id="BusinessRuleTask_0ludn3u_di" bpmnElement="Task_00d4fkl">
         <dc:Bounds x="628" y="599" width="100" height="80" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_027y9hs_di" bpmnElement="EndEvent_027y9hs">
+        <dc:Bounds x="687.5156739811912" y="520" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="705.5156739811912" y="559" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1wzmyls_di" bpmnElement="SequenceFlow_1wzmyls">
+        <di:waypoint xsi:type="dc:Point" x="625" y="538" />
+        <di:waypoint xsi:type="dc:Point" x="688" y="538" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="656.5" y="516" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_0iiozuo_di" bpmnElement="EndEvent_0iiozuo">
+        <dc:Bounds x="768.5156739811912" y="621" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="786.5156739811912" y="660" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0bqiaaw_di" bpmnElement="SequenceFlow_0bqiaaw">
+        <di:waypoint xsi:type="dc:Point" x="728" y="639" />
+        <di:waypoint xsi:type="dc:Point" x="769" y="639" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="748.5" y="617" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>
