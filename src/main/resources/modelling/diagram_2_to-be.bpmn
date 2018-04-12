@@ -94,7 +94,7 @@
       <bpmn:outgoing>SequenceFlow_0tbxmd5</bpmn:outgoing>
     </bpmn:task>
     <bpmn:sequenceFlow id="SequenceFlow_0jf8hel" name="no" sourceRef="ExclusiveGateway_05sja2e" targetRef="Task_15icet2">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[${riskCheckNeeded == "no"}]]></bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${riskCheckNeeded == false}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:endEvent id="EndEvent_1jvew3a">
       <bpmn:incoming>SequenceFlow_0tbxmd5</bpmn:incoming>
@@ -105,7 +105,7 @@
       <bpmn:outgoing>SequenceFlow_17takqs</bpmn:outgoing>
     </bpmn:task>
     <bpmn:sequenceFlow id="SequenceFlow_1ot23do" name="yes" sourceRef="ExclusiveGateway_05sja2e" targetRef="Task_0paxhdu">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[${riskCheckNeeded == "yes"}]]></bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${riskCheckNeeded == true}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:endEvent id="EndEvent_1weigj3">
       <bpmn:incoming>SequenceFlow_17takqs</bpmn:incoming>
