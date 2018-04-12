@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/1.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="definitions_1e2orxu" name="definitions" namespace="http://camunda.org/schema/1.0/dmn">
+  <decision id="decision_risk_check" name="Risk Check Gateway">
+    <extensionElements>
+      <biodi:bounds x="200" y="200" width="180" height="80" />
+    </extensionElements>
+    <decisionTable id="decisionTable">
+      <input id="input1" label="Hospitalisation" camunda:inputVariable="hospitalisation">
+        <inputExpression id="inputExpression1" typeRef="string">
+          <text>hospitalisation</text>
+        </inputExpression>
+      </input>
+      <output id="output1" label="Risk check needed" name="riskCheckNeeded" typeRef="boolean" />
+      <rule id="row-757014067-1">
+        <description></description>
+        <inputEntry id="UnaryTests_1j1o61w">
+          <text><![CDATA["general"]]></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ja3ki5">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="row-757014067-2">
+        <description></description>
+        <inputEntry id="UnaryTests_00m6g1y">
+          <text><![CDATA["semi-private"]]></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_03atz3q">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="row-757014067-3">
+        <inputEntry id="UnaryTests_13eko15">
+          <text><![CDATA["private"]]></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0pnd4z3">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>
