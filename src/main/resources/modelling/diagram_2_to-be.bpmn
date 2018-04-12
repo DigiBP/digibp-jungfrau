@@ -62,10 +62,10 @@
             <camunda:value id="Value_0eae7ie" name="with" />
             <camunda:value id="Value_25r9nsi" name="without" />
           </camunda:formField>
-          <camunda:formField id="Hospitalisation" label="Hospitalisation" type="enum">
-            <camunda:value id="Value_1417ea5" name="general" />
-            <camunda:value id="Value_2rsn2o8" name="semi-private" />
-            <camunda:value id="Value_1np2h0m" name="private" />
+          <camunda:formField id="hospitalisation" label="Hospitalisation" type="enum">
+            <camunda:value id="general" name="general" />
+            <camunda:value id="semi-private" name="semi-private" />
+            <camunda:value id="private" name="private" />
           </camunda:formField>
           <camunda:formField id="SupplementaryInsurance" label="SupplementaryInsurance" type="enum">
             <camunda:value id="Value_32mh8uc" name="Light" />
