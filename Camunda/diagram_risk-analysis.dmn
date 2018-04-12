@@ -1,46 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/1.0" id="definitions_07ru1sh" name="definitions" namespace="http://camunda.org/schema/1.0/dmn">
-  <decision id="decision" name="Risk analysis">
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/1.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="definitions_07ru1sh" name="definitions" namespace="http://camunda.org/schema/1.0/dmn">
+  <decision id="risk_analysis" name="Risk analysis">
     <extensionElements>
       <biodi:bounds x="200" y="200" width="180" height="80" />
     </extensionElements>
     <decisionTable id="decisionTable" hitPolicy="FIRST">
-      <input id="InputClause_1jx969y" label="Addictions">
-        <inputExpression id="LiteralExpression_0iac6vd" typeRef="string" />
+      <input id="InputClause_1jx969y" label="Addictions" camunda:inputVariable="addictions">
+        <inputExpression id="LiteralExpression_0iac6vd" typeRef="string">
+          <text>addictions</text>
+        </inputExpression>
         <inputValues id="UnaryTests_1cf2mat">
-          <text><![CDATA["Smoker","Alcohol","Drugs"]]></text>
+          <text><![CDATA["Smoker","Alcohol","DrugAbuse"]]></text>
         </inputValues>
       </input>
-      <input id="InputClause_1vh9pz5" label="Health conditions">
-        <inputExpression id="LiteralExpression_00ymok4" typeRef="string" />
+      <input id="InputClause_1vh9pz5" label="Health conditions" camunda:inputVariable="healthConditions">
+        <inputExpression id="LiteralExpression_00ymok4" typeRef="string">
+          <text>healthConditions</text>
+        </inputExpression>
         <inputValues id="UnaryTests_09q7fk8">
-          <text><![CDATA["Weak immun system","cancer","Genetical defects"]]></text>
+          <text><![CDATA["Weak immun system","cancer","Genetical defects","other"]]></text>
         </inputValues>
       </input>
-      <input id="input1" label="Number of operations in past 10 years">
+      <input id="input1" label="Number of surgery in past 10 years" camunda:inputVariable="surgery">
         <inputExpression id="inputExpression1" typeRef="integer">
-          <text></text>
+          <text>surgery</text>
         </inputExpression>
       </input>
-      <input id="InputClause_0cjnxrj" label="How often do you go to the doctor per year?">
-        <inputExpression id="LiteralExpression_1t2l470" typeRef="integer" />
+      <input id="InputClause_0wtq297" label="Do you take regularly drugs?" camunda:inputVariable="drugs">
+        <inputExpression id="LiteralExpression_1bzfiho" typeRef="boolean">
+          <text>drugs</text>
+        </inputExpression>
       </input>
-      <input id="InputClause_0wtq297" label="Do you take regularly medicants?">
-        <inputExpression id="LiteralExpression_1bzfiho" typeRef="boolean" />
+      <input id="InputClause_1ln3ugz" label="Age" camunda:inputVariable="age">
+        <inputExpression id="LiteralExpression_0gdlyvs" typeRef="integer">
+          <text>age</text>
+        </inputExpression>
       </input>
-      <input id="InputClause_1ln3ugz" label="Age">
-        <inputExpression id="LiteralExpression_0gdlyvs" typeRef="integer" />
+      <input id="InputClause_1etednt" label="BMI" camunda:inputVariable="bmi">
+        <inputExpression id="LiteralExpression_1il5qde" typeRef="integer">
+          <text>bmi</text>
+        </inputExpression>
       </input>
-      <input id="InputClause_1etednt" label="BMI">
-        <inputExpression id="LiteralExpression_1il5qde" typeRef="integer" />
-      </input>
-      <input id="InputClause_1n2g7vc" label="Activity level (Sport)">
-        <inputExpression id="LiteralExpression_1qabvrd" typeRef="string" />
+      <input id="InputClause_1n2g7vc" label="Activity level (Sport)" camunda:inputVariable="sport">
+        <inputExpression id="LiteralExpression_1qabvrd" typeRef="string">
+          <text>sport</text>
+        </inputExpression>
         <inputValues id="UnaryTests_07xxz7g">
           <text><![CDATA["never","rarely","often","very often"]]></text>
         </inputValues>
       </input>
-      <output id="output1" label="risk level" name="" typeRef="integer" />
+      <output id="output1" label="risk level" name="riskDecision" typeRef="string">
+        <outputValues id="UnaryTests_0ztx7in">
+          <text><![CDATA["unclear","accept","decline"]]></text>
+        </outputValues>
+      </output>
       <rule id="row-67205082-1">
         <description>Kerngesund</description>
         <inputEntry id="UnaryTests_0g1b1pw">
@@ -51,9 +64,6 @@
         </inputEntry>
         <inputEntry id="UnaryTests_0kiiwbk">
           <text><![CDATA[< 1]]></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_1fut0aw">
-          <text><![CDATA[< 2]]></text>
         </inputEntry>
         <inputEntry id="UnaryTests_126mn8r">
           <text>false</text>
@@ -68,7 +78,7 @@
           <text><![CDATA["very often", "often"]]></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1bm80d8">
-          <text>1</text>
+          <text><![CDATA["accept"]]></text>
         </outputEntry>
       </rule>
       <rule id="row-67205082-3">
@@ -80,9 +90,6 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_1agnn7v">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_17tdv8a">
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0f1nfeq">
@@ -98,21 +105,18 @@
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1udf26n">
-          <text>2</text>
+          <text><![CDATA["accept"]]></text>
         </outputEntry>
       </rule>
       <rule id="row-67205082-2">
         <description>Drogenabhängig</description>
         <inputEntry id="UnaryTests_0jy0qgm">
-          <text><![CDATA["Drugs"]]></text>
+          <text><![CDATA["DrugAbuse"]]></text>
         </inputEntry>
         <inputEntry id="UnaryTests_062rxux">
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0o37kvc">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_07r6tpr">
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_1v16vsp">
@@ -128,7 +132,7 @@
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1bnrdmh">
-          <text>3</text>
+          <text><![CDATA["decline"]]></text>
         </outputEntry>
       </rule>
       <rule id="row-777447978-1">
@@ -140,9 +144,6 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0o7f4fg">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_1vqyczk">
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_1elo8ga">
@@ -158,7 +159,7 @@
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0dy94dh">
-          <text>2.5</text>
+          <text><![CDATA["unclear"]]></text>
         </outputEntry>
       </rule>
       <rule id="row-777447978-2">
@@ -170,9 +171,6 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_1vmvwj3">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_1fe6owf">
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_1w59qr3">
@@ -188,7 +186,59 @@
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1a02fah">
-          <text>2.5</text>
+          <text><![CDATA["unclear"]]></text>
+        </outputEntry>
+      </rule>
+      <rule id="row-55467011-2">
+        <inputEntry id="UnaryTests_1gnagtc">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0wfz21s">
+          <text><![CDATA["Weak immun system", "cancer", "Genetical defects"]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0npmprr">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0fxdmbp">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1xh0q4k">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_01m0dls">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_089y1kp">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1d9u79y">
+          <text><![CDATA["decline"]]></text>
+        </outputEntry>
+      </rule>
+      <rule id="row-55467011-3">
+        <inputEntry id="UnaryTests_1yh4esm">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1rbkz50">
+          <text><![CDATA["other"]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1tb5t0y">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0da4x2p">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1q6y85v">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0svx7hd">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1l21h3x">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1qv20j5">
+          <text><![CDATA["unclear"]]></text>
         </outputEntry>
       </rule>
       <rule id="row-777447978-3">
@@ -200,9 +250,6 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_1pzznsj">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_0m1pj5u">
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_023bo12">
@@ -218,7 +265,7 @@
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1dre14d">
-          <text>3</text>
+          <text><![CDATA["unclear"]]></text>
         </outputEntry>
       </rule>
     </decisionTable>
