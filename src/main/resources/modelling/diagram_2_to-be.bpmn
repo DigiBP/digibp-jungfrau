@@ -75,7 +75,7 @@
       <bpmn:outgoing>SequenceFlow_1nyjnzs</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:sequenceFlow id="SequenceFlow_1nyjnzs" sourceRef="Task_0yuv8gc" targetRef="Task_1o642tj" />
-    <bpmn:businessRuleTask id="Task_1o642tj" name="assess customer need" camunda:decisionRef="Risk Check Gateway.dmn">
+    <bpmn:businessRuleTask id="Task_1o642tj" name="assess customer need" camunda:resultVariable="riskCheckNeeded" camunda:decisionRef="decision_risk_check" camunda:mapDecisionResult="singleEntry">
       <bpmn:incoming>SequenceFlow_1nyjnzs</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1pbmnem</bpmn:outgoing>
     </bpmn:businessRuleTask>
