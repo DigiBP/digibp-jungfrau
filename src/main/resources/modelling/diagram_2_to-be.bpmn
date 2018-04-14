@@ -43,7 +43,7 @@
           </camunda:formField>
           <camunda:formField id="Name" label="Name" type="string" />
           <camunda:formField id="FirstName" label="FirstName" type="string" />
-          <camunda:formField id="Age" label="Age" type="long" />
+          <camunda:formField id="age" label="Age" type="long" />
           <camunda:formField id="ZipCode" label="ZipCode" type="long" />
           <camunda:formField id="addictions" label="Addictions" type="enum" defaultValue="none">
             <camunda:value id="Smoker" name="Smoker" />
@@ -51,7 +51,7 @@
             <camunda:value id="Alcohol" name="Alcohol" />
             <camunda:value id="none" name="none" />
           </camunda:formField>
-          <camunda:formField id="healthConditions" label="Addictions" type="enum" defaultValue="none">
+          <camunda:formField id="healthConditions" label="Health Conditions" type="enum" defaultValue="none">
             <camunda:value id="none" name="None" />
             <camunda:value id="weakImmunSystem" name="Weak Immun System" />
             <camunda:value id="cancer" name="Cancer" />

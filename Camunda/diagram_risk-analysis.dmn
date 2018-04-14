@@ -18,11 +18,11 @@
           <text>healthConditions</text>
         </inputExpression>
         <inputValues id="UnaryTests_09q7fk8">
-          <text><![CDATA["Weak immun system","cancer","Genetical defects","other"]]></text>
+          <text><![CDATA["cancer","other","geneticalDefects","weakImmunSystem"]]></text>
         </inputValues>
       </input>
       <input id="input1" label="Number of surgery in past 10 years" camunda:inputVariable="surgery">
-        <inputExpression id="inputExpression1" typeRef="integer">
+        <inputExpression id="inputExpression1" typeRef="long">
           <text>surgery</text>
         </inputExpression>
       </input>
@@ -32,22 +32,19 @@
         </inputExpression>
       </input>
       <input id="InputClause_1ln3ugz" label="Age" camunda:inputVariable="age">
-        <inputExpression id="LiteralExpression_0gdlyvs" typeRef="integer">
+        <inputExpression id="LiteralExpression_0gdlyvs" typeRef="long">
           <text>age</text>
         </inputExpression>
       </input>
       <input id="InputClause_1etednt" label="BMI" camunda:inputVariable="bmi">
-        <inputExpression id="LiteralExpression_1il5qde" typeRef="integer">
+        <inputExpression id="LiteralExpression_1il5qde" typeRef="long">
           <text>bmi</text>
         </inputExpression>
       </input>
-      <input id="InputClause_1n2g7vc" label="Activity level (Sport)" camunda:inputVariable="sport">
-        <inputExpression id="LiteralExpression_1qabvrd" typeRef="string">
+      <input id="InputClause_1n2g7vc" label="How often you perform sport activity?" camunda:inputVariable="sport">
+        <inputExpression id="LiteralExpression_1qabvrd" typeRef="long">
           <text>sport</text>
         </inputExpression>
-        <inputValues id="UnaryTests_07xxz7g">
-          <text><![CDATA["never","rarely","often","very often"]]></text>
-        </inputValues>
       </input>
       <output id="output1" label="risk level" name="riskDecision" typeRef="string">
         <outputValues id="UnaryTests_0ztx7in">
@@ -75,7 +72,7 @@
           <text>[15..28]</text>
         </inputEntry>
         <inputEntry id="UnaryTests_18wrd2a">
-          <text><![CDATA["very often", "often"]]></text>
+          <text><![CDATA[>= 2]]></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1bm80d8">
           <text><![CDATA["accept"]]></text>
@@ -194,7 +191,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0wfz21s">
-          <text><![CDATA["Weak immun system", "cancer", "Genetical defects"]]></text>
+          <text><![CDATA["cancer", "geneticalDefects", "weakImmunSystem"]]></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0npmprr">
           <text></text>
