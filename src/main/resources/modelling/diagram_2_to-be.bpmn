@@ -56,6 +56,7 @@
             <camunda:value id="weakImmunSystem" name="Weak Immun System" />
             <camunda:value id="cancer" name="Cancer" />
             <camunda:value id="geneticalDefects" name="Genetical Defects" />
+            <camunda:value id="other" name="Other" />
           </camunda:formField>
           <camunda:formField id="surgery" label="Surgery" type="long" defaultValue="0" />
           <camunda:formField id="drugs" label="Drugs" type="boolean" defaultValue="false" />
