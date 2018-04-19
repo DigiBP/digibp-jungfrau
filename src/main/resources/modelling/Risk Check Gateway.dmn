@@ -10,8 +10,10 @@
           <text>hospitalisation</text>
         </inputExpression>
       </input>
-      <input id="InputClause_0q6pkcg" label="SupplementaryInsurance">
-        <inputExpression id="LiteralExpression_0fp3o79" typeRef="string" />
+      <input id="InputClause_0q6pkcg" label="SupplementaryInsurance" camunda:inputVariable="supplementaryInsurance">
+        <inputExpression id="LiteralExpression_0fp3o79" typeRef="string">
+          <text>supplementaryInsurance</text>
+        </inputExpression>
       </input>
       <output id="output1" label="Risk check needed" name="riskCheckNeeded" typeRef="boolean" />
       <rule id="row-757014067-1">
