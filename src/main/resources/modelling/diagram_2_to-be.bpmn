@@ -131,7 +131,7 @@
       <bpmn:outgoing>SequenceFlow_1xkfg87</bpmn:outgoing>
     </bpmn:exclusiveGateway>
     <bpmn:sequenceFlow id="SequenceFlow_19gesxd" name="yes" sourceRef="ExclusiveGateway_02jgqxs" targetRef="Task_1422eoe">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[${riskDecision == "declined"} OR ${riskDecision == "unclear"}]]></bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[${riskDecision == "declined"}]]></bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:task id="Task_15icet2" name="create offer">
       <bpmn:incoming>SequenceFlow_0jf8hel</bpmn:incoming>
