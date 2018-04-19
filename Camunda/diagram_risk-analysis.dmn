@@ -18,7 +18,7 @@
           <text>healthConditions</text>
         </inputExpression>
         <inputValues id="UnaryTests_09q7fk8">
-          <text><![CDATA["cancer","other","geneticalDefects","weakImmunSystem"]]></text>
+          <text><![CDATA["cancer","other","geneticalDefects","weakImmunSystem","none"]]></text>
         </inputValues>
       </input>
       <input id="input1" label="Number of surgery in past 10 years" camunda:inputVariable="surgery">
@@ -57,7 +57,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0sg2b59">
-          <text></text>
+          <text><![CDATA["none"]]></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0kiiwbk">
           <text><![CDATA[< 1]]></text>
