@@ -38,9 +38,9 @@
             <camunda:value id="Value_2tpd71l" name="female" />
             <camunda:value id="Value_1fmfng0" name="male" />
           </camunda:formField>
-          <camunda:formField id="Name" label="Name" type="string" />
-          <camunda:formField id="FirstName" label="FirstName" type="string" />
-          <camunda:formField id="age" label="Age" type="long" defaultValue="0" />
+          <camunda:formField id="LastName" label="Last Name" type="string" />
+          <camunda:formField id="FirstName" label="First Name" type="string" />
+          <camunda:formField id="Age" label="Age" type="long" defaultValue="18" />
           <camunda:formField id="ZipCode" label="ZipCode" type="long" />
           <camunda:formField id="addictions" label="Addictions" type="enum" defaultValue="none">
             <camunda:value id="Smoker" name="Smoker" />
@@ -133,8 +133,9 @@
     <bpmn:startEvent id="StartEvent_1" name="Insurance-request" camunda:initiator="Message-Insurance-request">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="Name" label="Name" type="string" />
-          <camunda:formField id="Birthday" label="Birthday" type="date" />
+          <camunda:formField id="LastName" label="Last name" type="string" defaultValue="Last Name" />
+          <camunda:formField id="FirstName" label="First Name" type="string" defaultValue="First Name" />
+          <camunda:formField id="Age" label="Your age" type="long" defaultValue="18" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:outgoing>SequenceFlow_1f4cvpm</bpmn:outgoing>

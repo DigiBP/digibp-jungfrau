@@ -33,7 +33,7 @@
       </input>
       <input id="InputClause_1ln3ugz" label="Age" camunda:inputVariable="age">
         <inputExpression id="LiteralExpression_0gdlyvs" typeRef="integer">
-          <text>age</text>
+          <text>Age</text>
         </inputExpression>
       </input>
       <input id="InputClause_1etednt" label="BMI" camunda:inputVariable="bmi">
