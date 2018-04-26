@@ -35,13 +35,13 @@
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="Gender" label="Gender" type="enum">
-            <camunda:value id="gender_female" name="female" />
-            <camunda:value id="gender_male" name="male" />
+            <camunda:value id="female" name="female" />
+            <camunda:value id="male" name="male" />
           </camunda:formField>
           <camunda:formField id="LastName" label="Last Name" type="string" />
           <camunda:formField id="FirstName" label="First Name" type="string" />
           <camunda:formField id="Age" label="Age" type="long" defaultValue="18" />
-          <camunda:formField id="ZipCode" label="ZipCode" type="long" />
+          <camunda:formField id="ZipCode" label="ZipCode" type="long" defaultValue="1000" />
           <camunda:formField id="addictions" label="Addictions" type="enum" defaultValue="none">
             <camunda:value id="Smoker" name="Smoker" />
             <camunda:value id="DrugAbuse" name="DrugAbuse" />
@@ -71,9 +71,9 @@
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="Model" label="Model" type="enum">
-            <camunda:value id="Value_0omu3e2" name="Telmed" />
-            <camunda:value id="Value_1l2n29r" name="Family-doctor / HMO" />
-            <camunda:value id="Value_38oscqq" name="Free choice of doctor" />
+            <camunda:value id="telmed" name="Telmed" />
+            <camunda:value id="hmo" name="Family-doctor / HMO" />
+            <camunda:value id="freechoice" name="Free choice of doctor" />
           </camunda:formField>
           <camunda:formField id="Accident" label="Accident" type="enum">
             <camunda:value id="Value_0eae7ie" name="with" />
