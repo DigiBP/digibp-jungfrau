@@ -76,8 +76,8 @@
             <camunda:value id="freechoice" name="Free choice of doctor" />
           </camunda:formField>
           <camunda:formField id="Accident" label="Accident" type="enum">
-            <camunda:value id="Value_0eae7ie" name="with" />
-            <camunda:value id="Value_25r9nsi" name="without" />
+            <camunda:value id="with" name="with" />
+            <camunda:value id="without" name="without" />
           </camunda:formField>
           <camunda:formField id="hospitalisation" label="Hospitalisation" type="enum">
             <camunda:value id="general" name="general" />
