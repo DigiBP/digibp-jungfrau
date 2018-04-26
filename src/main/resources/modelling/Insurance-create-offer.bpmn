@@ -38,8 +38,8 @@
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="Gender" label="Gender" type="enum">
-            <camunda:value id="Value_2tpd71l" name="female" />
-            <camunda:value id="Value_1fmfng0" name="male" />
+            <camunda:value id="gender_female" name="female" />
+            <camunda:value id="gender_male" name="male" />
           </camunda:formField>
           <camunda:formField id="LastName" label="Last Name" type="string" />
           <camunda:formField id="FirstName" label="First Name" type="string" />
@@ -201,7 +201,21 @@ header;]]></camunda:script>
             <camunda:inputParameter name="payload">
               <camunda:script scriptFormat="JavaScript"><![CDATA[out = JSON.stringify({
     "firstName": FirstName,
-    "lastName": LastName
+    "lastName": LastName,
+    "gender": Gender,
+    "ZipCode": ZipCode,
+    "addictions": addictions,
+		"healthConditions": healthConditions,
+		"surgery": surgery,
+		"drugs": drugs,
+		"bmi": bmi
+		"sport": sport,
+  	"model": Model,
+  	"accident": Accident,
+  	"hospitalisation": hospitalisation,
+  	"supplementaryInsurance": supplementaryInsurance,
+  	"riskCheckNeeded": riskCheckNeeded,
+  	"riskDecision": riskDecision,
 });]]></camunda:script>
             </camunda:inputParameter>
             <camunda:outputParameter name="processVariableResponse">
