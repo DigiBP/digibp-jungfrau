@@ -200,22 +200,22 @@ header;]]></camunda:script>
             </camunda:inputParameter>
             <camunda:inputParameter name="payload">
               <camunda:script scriptFormat="JavaScript"><![CDATA[out = JSON.stringify({
-    "firstName": FirstName,
-    "lastName": LastName,
-    "gender": Gender,
-    "ZipCode": ZipCode,
-    "addictions": addictions,
-		"healthConditions": healthConditions,
-		"surgery": surgery,
-		"drugs": drugs,
-		"bmi": bmi
-		"sport": sport,
-  	"model": Model,
-  	"accident": Accident,
-  	"hospitalisation": hospitalisation,
-  	"supplementaryInsurance": supplementaryInsurance,
-  	"riskCheckNeeded": riskCheckNeeded,
-  	"riskDecision": riskDecision,
+              "firstName": FirstName,
+              "lastName": LastName,
+              "gender": Gender,
+              "ZipCode": ZipCode,
+              "addictions": addictions,
+              "healthConditions": healthConditions,
+              "surgery": surgery,
+              "drugs": drugs,
+              "bmi": bmi,
+              "sport": sport,
+              "model": Model,
+              "accident": Accident,
+              "hospitalisation": hospitalisation,
+              "supplementaryInsurance": supplementaryInsurance,
+              "riskCheckNeeded": riskCheckNeeded,
+              "riskDecision": riskDecision,
 });]]></camunda:script>
             </camunda:inputParameter>
             <camunda:outputParameter name="processVariableResponse">
