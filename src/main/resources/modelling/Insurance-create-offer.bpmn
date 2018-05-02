@@ -4,55 +4,55 @@
     <bpmn:participant id="Participant_1ixue06" name="Health Insurance" processRef="Insurance-request-workflow" />
     <bpmn:participant id="Participant_0fyh0cq" name="Customer" processRef="Process_15n0e7j" />
     <bpmn:messageFlow id="MessageFlow_0z8ln57" name="Request-insrunce-online" sourceRef="Participant_0fyh0cq" targetRef="StartEvent_1" />
-    <bpmn:messageFlow id="MessageFlow_1y9bc26" sourceRef="Task_02ytnhx" targetRef="Participant_0fyh0cq" />
+    <bpmn:messageFlow id="MessageFlow_1y9bc26" sourceRef="send_offer_to_customer" targetRef="Participant_0fyh0cq" />
   </bpmn:collaboration>
   <bpmn:process id="Insurance-request-workflow" isExecutable="true">
     <bpmn:laneSet>
       <bpmn:lane id="Lane_0fzv8w1" name="Chatbot">
-        <bpmn:flowNodeRef>Task_10d92yl</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_0yuv8gc</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ask_for_personal_data</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>evaluate_customer_need</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_0qg8vi6" name="System">
-        <bpmn:flowNodeRef>Task_00d4fkl</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>evaluate_risk_level</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ExclusiveGateway_02jgqxs</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ExclusiveGateway_05sja2e</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_02clu8u</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_15icet2</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_1o642tj</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_1hv3w1n</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>create_offer_with_additional_insurance</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>create_offer_with_basic_insurance</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>assess_customer_need</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>store_data</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_0cmrxn1</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_02ytnhx</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>send_offer_to_customer</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_0kdk1hq" name="Expert">
-        <bpmn:flowNodeRef>Task_1422eoe</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_1fegmkx</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>define_special_conditions_by_expert</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>create_special_offer</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
-    <bpmn:sequenceFlow id="SequenceFlow_1f4cvpm" sourceRef="StartEvent_1" targetRef="Task_10d92yl" />
-    <bpmn:sequenceFlow id="SequenceFlow_0hzjf01" sourceRef="Task_10d92yl" targetRef="Task_0yuv8gc" />
-    <bpmn:userTask id="Task_10d92yl" name="ask for personal data" camunda:candidateGroups="Chatbot">
+    <bpmn:sequenceFlow id="SequenceFlow_1f4cvpm" sourceRef="StartEvent_1" targetRef="ask_for_personal_data" />
+    <bpmn:sequenceFlow id="SequenceFlow_0hzjf01" sourceRef="ask_for_personal_data" targetRef="evaluate_customer_need" />
+    <bpmn:userTask id="ask_for_personal_data" name="ask for personal data" camunda:candidateGroups="Chatbot">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="Gender" label="Gender" type="enum">
+          <camunda:formField id="gender" label="Gender" type="enum" defaultValue="male">
             <camunda:value id="female" name="female" />
             <camunda:value id="male" name="male" />
           </camunda:formField>
-          <camunda:formField id="LastName" label="Last Name" type="string" />
-          <camunda:formField id="FirstName" label="First Name" type="string" />
-          <camunda:formField id="Age" label="Age" type="long" defaultValue="18" />
-          <camunda:formField id="ZipCode" label="ZipCode" type="long" defaultValue="1000" />
+          <camunda:formField id="lastname" label="Last Name" type="string" />
+          <camunda:formField id="firstname" label="First Name" type="string" />
+          <camunda:formField id="age" label="Age" type="long" defaultValue="18" />
+          <camunda:formField id="zipcode" label="ZipCode" type="long" defaultValue="1000" />
           <camunda:formField id="addictions" label="Addictions" type="enum" defaultValue="none">
-            <camunda:value id="Smoker" name="Smoker" />
-            <camunda:value id="DrugAbuse" name="DrugAbuse" />
-            <camunda:value id="Alcohol" name="Alcohol" />
+            <camunda:value id="smoker" name="Smoker" />
+            <camunda:value id="drug_abuse" name="Drug/Abuse" />
+            <camunda:value id="alcohol" name="Alcohol" />
             <camunda:value id="none" name="none" />
           </camunda:formField>
-          <camunda:formField id="healthConditions" label="Health Conditions" type="enum" defaultValue="none">
+          <camunda:formField id="health_conditions" label="Health Conditions" type="enum" defaultValue="none">
             <camunda:value id="none" name="None" />
-            <camunda:value id="weakImmunSystem" name="Weak Immun System" />
+            <camunda:value id="weak_immun_system" name="Weak Immun System" />
             <camunda:value id="cancer" name="Cancer" />
-            <camunda:value id="geneticalDefects" name="Genetical Defects" />
+            <camunda:value id="genetical_defects" name="Genetical Defects" />
             <camunda:value id="other" name="Other" />
           </camunda:formField>
           <camunda:formField id="surgery" label="Surgery" type="long" defaultValue="0" />
@@ -67,28 +67,28 @@
         <bpmn:targetRef>DataStoreReference_0orj8bv</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
     </bpmn:userTask>
-    <bpmn:userTask id="Task_0yuv8gc" name="evaluate customer need">
+    <bpmn:userTask id="evaluate_customer_need" name="Evaluate customer need">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="Model" label="Model" type="enum">
+          <camunda:formField id="model" label="Model" type="enum" defaultValue="telmed">
             <camunda:value id="telmed" name="Telmed" />
             <camunda:value id="hmo" name="Family-doctor / HMO" />
             <camunda:value id="freechoice" name="Free choice of doctor" />
           </camunda:formField>
-          <camunda:formField id="Accident" label="Accident" type="enum">
+          <camunda:formField id="accident" label="Accident" type="enum" defaultValue="with">
             <camunda:value id="with" name="with" />
             <camunda:value id="without" name="without" />
           </camunda:formField>
-          <camunda:formField id="hospitalisation" label="Hospitalisation" type="enum">
+          <camunda:formField id="hospitalisation" label="Hospitalisation" type="enum" defaultValue="general">
             <camunda:value id="general" name="general" />
-            <camunda:value id="semi-private" name="semi-private" />
+            <camunda:value id="semiprivate" name="semi-private" />
             <camunda:value id="private" name="private" />
           </camunda:formField>
-          <camunda:formField id="supplementaryInsurance" label="SupplementaryInsurance" type="enum">
-            <camunda:value id="Light" name="Light" />
-            <camunda:value id="Classic" name="Classic" />
-            <camunda:value id="MedicalPrivate" name="Medical Private" />
-            <camunda:value id="None" name="None" />
+          <camunda:formField id="supplementary_insurance" label="Supplementary Insurance" type="enum" defaultValue="None">
+            <camunda:value id="light" name="Light" />
+            <camunda:value id="classic" name="Classic" />
+            <camunda:value id="medical_private" name="Medical Private" />
+            <camunda:value id="none" name="None" />
           </camunda:formField>
         </camunda:formData>
       </bpmn:extensionElements>
@@ -98,25 +98,28 @@
         <bpmn:targetRef>DataStoreReference_0orj8bv</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
     </bpmn:userTask>
-    <bpmn:sequenceFlow id="SequenceFlow_1nyjnzs" sourceRef="Task_0yuv8gc" targetRef="Task_1o642tj" />
-    <bpmn:sequenceFlow id="SequenceFlow_165xtbx" sourceRef="Task_1o642tj" targetRef="ExclusiveGateway_05sja2e" />
-    <bpmn:sequenceFlow id="SequenceFlow_0jf8hel" name="no" sourceRef="ExclusiveGateway_05sja2e" targetRef="Task_15icet2">
+    <bpmn:sequenceFlow id="SequenceFlow_1nyjnzs" sourceRef="evaluate_customer_need" targetRef="assess_customer_need" />
+    <bpmn:sequenceFlow id="SequenceFlow_165xtbx" sourceRef="assess_customer_need" targetRef="ExclusiveGateway_05sja2e" />
+    <bpmn:sequenceFlow id="SequenceFlow_0jf8hel" name="no" sourceRef="ExclusiveGateway_05sja2e" targetRef="create_offer_with_basic_insurance">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${riskCheckNeeded == false}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="SequenceFlow_1ot23do" name="yes" sourceRef="ExclusiveGateway_05sja2e" targetRef="Task_00d4fkl">
+    <bpmn:sequenceFlow id="SequenceFlow_1ot23do" name="yes" sourceRef="ExclusiveGateway_05sja2e" targetRef="evaluate_risk_level">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${riskCheckNeeded == true}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="SequenceFlow_16b5f1q" sourceRef="Task_00d4fkl" targetRef="ExclusiveGateway_02jgqxs" />
-    <bpmn:sequenceFlow id="SequenceFlow_19gesxd" name="unclear" sourceRef="ExclusiveGateway_02jgqxs" targetRef="Task_1422eoe">
+    <bpmn:sequenceFlow id="SequenceFlow_16b5f1q" sourceRef="evaluate_risk_level" targetRef="ExclusiveGateway_02jgqxs" />
+    <bpmn:sequenceFlow id="SequenceFlow_19gesxd" name="risk unclear" sourceRef="ExclusiveGateway_02jgqxs" targetRef="define_special_conditions_by_expert">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[${riskDecision == "unclear"}]]></bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="SequenceFlow_1xkfg87" name="high risk&#10;&#10;" sourceRef="ExclusiveGateway_02jgqxs" targetRef="Task_15icet2">
+    <bpmn:sequenceFlow id="SequenceFlow_1xkfg87" name="high risk&#10;&#10;" sourceRef="ExclusiveGateway_02jgqxs" targetRef="create_offer_with_basic_insurance">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[${riskDecision == "decline"}]]></bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:userTask id="Task_1422eoe" name="define special conditions">
+    <bpmn:userTask id="define_special_conditions_by_expert" name="Define special conditions by expert">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="FormField_26j0tbf" label="decline?" type="boolean" />
+          <camunda:formField id="riskDecision" label="Check if additional coverage can be offered to the customer " type="enum" defaultValue="decline">
+            <camunda:value id="decline" name="decline" />
+            <camunda:value id="accept" name="accept" />
+          </camunda:formField>
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_19gesxd</bpmn:incoming>
@@ -127,7 +130,7 @@
         <bpmn:targetRef>Property_0zmhtue</bpmn:targetRef>
       </bpmn:dataInputAssociation>
     </bpmn:userTask>
-    <bpmn:sequenceFlow id="SequenceFlow_0twh9co" name="low risk" sourceRef="ExclusiveGateway_02jgqxs" targetRef="Task_02clu8u">
+    <bpmn:sequenceFlow id="SequenceFlow_0twh9co" name="low risk" sourceRef="ExclusiveGateway_02jgqxs" targetRef="create_offer_with_additional_insurance">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[${riskDecision == "accept"}]]></bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:startEvent id="StartEvent_1" name="Insurance-request" camunda:initiator="Message-Insurance-request">
@@ -141,26 +144,26 @@
       <bpmn:outgoing>SequenceFlow_1f4cvpm</bpmn:outgoing>
       <bpmn:messageEventDefinition messageRef="Message_1y0qwtl" />
     </bpmn:startEvent>
-    <bpmn:businessRuleTask id="Task_00d4fkl" name="evaluate risk analysis" camunda:resultVariable="riskDecision" camunda:decisionRef="risk_analysis" camunda:mapDecisionResult="singleEntry">
+    <bpmn:businessRuleTask id="evaluate_risk_level" name="Evaluate risk level" camunda:resultVariable="riskDecision" camunda:decisionRef="risk_analysis" camunda:mapDecisionResult="singleEntry">
       <bpmn:incoming>SequenceFlow_1ot23do</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_16b5f1q</bpmn:outgoing>
     </bpmn:businessRuleTask>
-    <bpmn:sequenceFlow id="SequenceFlow_0rvt4si" sourceRef="Task_1422eoe" targetRef="Task_1fegmkx" />
-    <bpmn:exclusiveGateway id="ExclusiveGateway_02jgqxs" name="unclear risk level">
+    <bpmn:sequenceFlow id="SequenceFlow_0rvt4si" sourceRef="define_special_conditions_by_expert" targetRef="create_special_offer" />
+    <bpmn:exclusiveGateway id="ExclusiveGateway_02jgqxs" name="Gateway by risk level">
       <bpmn:incoming>SequenceFlow_16b5f1q</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_19gesxd</bpmn:outgoing>
       <bpmn:outgoing>SequenceFlow_1xkfg87</bpmn:outgoing>
       <bpmn:outgoing>SequenceFlow_0twh9co</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:sequenceFlow id="SequenceFlow_0ef7keo" sourceRef="Task_02clu8u" targetRef="Task_1hv3w1n" />
-    <bpmn:sequenceFlow id="SequenceFlow_16sj6oq" sourceRef="Task_15icet2" targetRef="Task_1hv3w1n" />
-    <bpmn:exclusiveGateway id="ExclusiveGateway_05sja2e" name="interest in additional coverage?">
+    <bpmn:sequenceFlow id="SequenceFlow_0ef7keo" sourceRef="create_offer_with_additional_insurance" targetRef="store_data" />
+    <bpmn:sequenceFlow id="SequenceFlow_16sj6oq" sourceRef="create_offer_with_basic_insurance" targetRef="store_data" />
+    <bpmn:exclusiveGateway id="ExclusiveGateway_05sja2e" name="Interested in additional coverage?">
       <bpmn:incoming>SequenceFlow_165xtbx</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0jf8hel</bpmn:outgoing>
       <bpmn:outgoing>SequenceFlow_1ot23do</bpmn:outgoing>
     </bpmn:exclusiveGateway>
     <bpmn:dataStoreReference id="DataStoreReference_0orj8bv" />
-    <bpmn:task id="Task_02clu8u" name="create with additional insurance">
+    <bpmn:task id="create_offer_with_additional_insurance" name="Create offer with additional insurance">
       <bpmn:incoming>SequenceFlow_0twh9co</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0ef7keo</bpmn:outgoing>
       <bpmn:property id="Property_0dg89q2" name="__targetRef_placeholder" />
@@ -169,7 +172,7 @@
         <bpmn:targetRef>Property_0dg89q2</bpmn:targetRef>
       </bpmn:dataInputAssociation>
     </bpmn:task>
-    <bpmn:task id="Task_15icet2" name="create offer with basic insurance">
+    <bpmn:task id="create_offer_with_basic_insurance" name="Create offer with basic insurance">
       <bpmn:incoming>SequenceFlow_0jf8hel</bpmn:incoming>
       <bpmn:incoming>SequenceFlow_1xkfg87</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_16sj6oq</bpmn:outgoing>
@@ -179,12 +182,12 @@
         <bpmn:targetRef>Property_1ao80o7</bpmn:targetRef>
       </bpmn:dataInputAssociation>
     </bpmn:task>
-    <bpmn:businessRuleTask id="Task_1o642tj" name="assess customer need" camunda:resultVariable="riskCheckNeeded" camunda:decisionRef="decision_risk_check" camunda:mapDecisionResult="singleEntry">
+    <bpmn:businessRuleTask id="assess_customer_need" name="Assess customer need" camunda:resultVariable="riskCheckNeeded" camunda:decisionRef="assess_customer_need" camunda:mapDecisionResult="singleEntry">
       <bpmn:incoming>SequenceFlow_1nyjnzs</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_165xtbx</bpmn:outgoing>
     </bpmn:businessRuleTask>
-    <bpmn:sequenceFlow id="SequenceFlow_10332z2" sourceRef="Task_1hv3w1n" targetRef="Task_02ytnhx" />
-    <bpmn:serviceTask id="Task_1hv3w1n" name="Store Data">
+    <bpmn:sequenceFlow id="SequenceFlow_10332z2" sourceRef="store_data" targetRef="send_offer_to_customer" />
+    <bpmn:serviceTask id="store_data" name="Store Data">
       <bpmn:extensionElements>
         <camunda:connector>
           <camunda:inputOutput>
@@ -227,7 +230,7 @@ header;]]></camunda:script>
       <bpmn:incoming>SequenceFlow_1jhuml5</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_10332z2</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:task id="Task_1fegmkx" name="create speical offer">
+    <bpmn:task id="create_special_offer" name="Create special offer">
       <bpmn:incoming>SequenceFlow_0rvt4si</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1jhuml5</bpmn:outgoing>
       <bpmn:dataOutputAssociation id="DataOutputAssociation_1t837rd">
@@ -237,12 +240,12 @@ header;]]></camunda:script>
     <bpmn:endEvent id="EndEvent_0cmrxn1">
       <bpmn:incoming>SequenceFlow_1abkkfg</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:task id="Task_02ytnhx" name="send offer to customer">
+    <bpmn:task id="send_offer_to_customer" name="Send offer to customer">
       <bpmn:incoming>SequenceFlow_10332z2</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1abkkfg</bpmn:outgoing>
     </bpmn:task>
-    <bpmn:sequenceFlow id="SequenceFlow_1abkkfg" sourceRef="Task_02ytnhx" targetRef="EndEvent_0cmrxn1" />
-    <bpmn:sequenceFlow id="SequenceFlow_1jhuml5" sourceRef="Task_1fegmkx" targetRef="Task_1hv3w1n" />
+    <bpmn:sequenceFlow id="SequenceFlow_1abkkfg" sourceRef="send_offer_to_customer" targetRef="EndEvent_0cmrxn1" />
+    <bpmn:sequenceFlow id="SequenceFlow_1jhuml5" sourceRef="create_special_offer" targetRef="store_data" />
   </bpmn:process>
   <bpmn:process id="Process_15n0e7j" isExecutable="false">
     <bpmn:laneSet />
@@ -291,10 +294,10 @@ header;]]></camunda:script>
           <dc:Bounds x="-69" y="367" width="89" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="UserTask_0f93vps_di" bpmnElement="Task_10d92yl">
+      <bpmndi:BPMNShape id="UserTask_0f93vps_di" bpmnElement="ask_for_personal_data">
         <dc:Bounds x="57" y="309" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="UserTask_0cplu3m_di" bpmnElement="Task_0yuv8gc">
+      <bpmndi:BPMNShape id="UserTask_0cplu3m_di" bpmnElement="evaluate_customer_need">
         <dc:Bounds x="199" y="309" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_0kdk1hq_di" bpmnElement="Lane_0kdk1hq">
@@ -307,7 +310,7 @@ header;]]></camunda:script>
           <dc:Bounds x="219" y="487.5" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="BusinessRuleTask_0gut0xe_di" bpmnElement="Task_1o642tj">
+      <bpmndi:BPMNShape id="BusinessRuleTask_0gut0xe_di" bpmnElement="assess_customer_need">
         <dc:Bounds x="199" y="599" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ExclusiveGateway_05sja2e_di" bpmnElement="ExclusiveGateway_05sja2e" isMarkerVisible="true">
@@ -323,7 +326,7 @@ header;]]></camunda:script>
           <dc:Bounds x="302" y="617.5" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="Task_15icet2_di" bpmnElement="Task_15icet2">
+      <bpmndi:BPMNShape id="Task_15icet2_di" bpmnElement="create_offer_with_basic_insurance">
         <dc:Bounds x="959" y="486" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_0jf8hel_di" bpmnElement="SequenceFlow_0jf8hel">
@@ -331,7 +334,7 @@ header;]]></camunda:script>
         <di:waypoint xsi:type="dc:Point" x="420" y="505" />
         <di:waypoint xsi:type="dc:Point" x="957" y="505" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="721.1160071942447" y="478" width="13" height="13" />
+          <dc:Bounds x="427" y="534" width="13" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1ot23do_di" bpmnElement="SequenceFlow_1ot23do">
@@ -341,7 +344,7 @@ header;]]></camunda:script>
           <dc:Bounds x="478.8102189781022" y="617" width="18" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="BusinessRuleTask_0ludn3u_di" bpmnElement="Task_00d4fkl">
+      <bpmndi:BPMNShape id="BusinessRuleTask_0ludn3u_di" bpmnElement="evaluate_risk_level">
         <dc:Bounds x="530" y="599" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_16b5f1q_di" bpmnElement="SequenceFlow_16b5f1q">
@@ -353,13 +356,13 @@ header;]]></camunda:script>
           <dc:Bounds x="691" y="632.5" width="0" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="UserTask_03jdj0w_di" bpmnElement="Task_1422eoe">
+      <bpmndi:BPMNShape id="UserTask_03jdj0w_di" bpmnElement="define_special_conditions_by_expert">
         <dc:Bounds x="814" y="868" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ExclusiveGateway_02jgqxs_di" bpmnElement="ExclusiveGateway_02jgqxs" isMarkerVisible="true">
         <dc:Bounds x="721" y="614.0148448043185" width="50" height="50" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="635" y="608" width="82" height="12" />
+          <dc:Bounds x="664" y="669" width="79" height="25" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_19gesxd_di" bpmnElement="SequenceFlow_19gesxd">
@@ -367,7 +370,7 @@ header;]]></camunda:script>
         <di:waypoint xsi:type="dc:Point" x="746" y="908" />
         <di:waypoint xsi:type="dc:Point" x="814" y="908" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="753.5555555555555" y="871.8422090729784" width="18" height="13" />
+          <dc:Bounds x="752" y="834" width="37" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1xkfg87_di" bpmnElement="SequenceFlow_1xkfg87">
@@ -375,17 +378,17 @@ header;]]></camunda:script>
         <di:waypoint xsi:type="dc:Point" x="746" y="541" />
         <di:waypoint xsi:type="dc:Point" x="958" y="541" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="750" y="564.5833333333334" width="41" height="38" />
+          <dc:Bounds x="758" y="558" width="41" height="38" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="Task_02clu8u_di" bpmnElement="Task_02clu8u">
+      <bpmndi:BPMNShape id="Task_02clu8u_di" bpmnElement="create_offer_with_additional_insurance">
         <dc:Bounds x="893" y="599" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_0twh9co_di" bpmnElement="SequenceFlow_0twh9co">
         <di:waypoint xsi:type="dc:Point" x="771" y="639" />
         <di:waypoint xsi:type="dc:Point" x="893" y="639" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="837.3048780487804" y="612" width="37" height="13" />
+          <dc:Bounds x="790" y="618" width="37" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="DataStoreReference_0orj8bv_di" bpmnElement="DataStoreReference_0orj8bv">
@@ -399,7 +402,7 @@ header;]]></camunda:script>
         <di:waypoint xsi:type="dc:Point" x="107" y="231" />
         <di:waypoint xsi:type="dc:Point" x="827" y="233" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="Task_1fegmkx_di" bpmnElement="Task_1fegmkx">
+      <bpmndi:BPMNShape id="Task_1fegmkx_di" bpmnElement="create_special_offer">
         <dc:Bounds x="1078" y="868" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_0rvt4si_di" bpmnElement="SequenceFlow_0rvt4si">
@@ -409,7 +412,7 @@ header;]]></camunda:script>
           <dc:Bounds x="951" y="886.5" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="Task_02ytnhx_di" bpmnElement="Task_02ytnhx">
+      <bpmndi:BPMNShape id="Task_02ytnhx_di" bpmnElement="send_offer_to_customer">
         <dc:Bounds x="1324" y="599" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_0ef7keo_di" bpmnElement="SequenceFlow_0ef7keo">
@@ -475,7 +478,7 @@ header;]]></camunda:script>
           <dc:Bounds x="1206" y="617.5" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="ServiceTask_17d0wd8_di" bpmnElement="Task_1hv3w1n">
+      <bpmndi:BPMNShape id="ServiceTask_17d0wd8_di" bpmnElement="store_data">
         <dc:Bounds x="1078" y="599" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="DataOutputAssociation_1t837rd_di" bpmnElement="DataOutputAssociation_1t837rd">

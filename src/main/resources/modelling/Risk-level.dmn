@@ -10,15 +10,15 @@
           <text>addictions</text>
         </inputExpression>
         <inputValues id="UnaryTests_1cf2mat">
-          <text><![CDATA["Smoker","Alcohol","DrugAbuse"]]></text>
+          <text><![CDATA["smoker","alcohol","drug_abuse"]]></text>
         </inputValues>
       </input>
-      <input id="InputClause_1vh9pz5" label="Health conditions" camunda:inputVariable="healthConditions">
+      <input id="InputClause_1vh9pz5" label="Health conditions" camunda:inputVariable="health_conditions">
         <inputExpression id="LiteralExpression_00ymok4" typeRef="string">
-          <text>healthConditions</text>
+          <text>health_conditions</text>
         </inputExpression>
         <inputValues id="UnaryTests_09q7fk8">
-          <text><![CDATA["Weak immun system","cancer","Genetical defects","other"]]></text>
+          <text><![CDATA["cancer","other","weak_immun_system","genetical_defects"]]></text>
         </inputValues>
       </input>
       <input id="input1" label="Number of surgery in past 10 years" camunda:inputVariable="surgery">
@@ -33,7 +33,7 @@
       </input>
       <input id="InputClause_1ln3ugz" label="Age" camunda:inputVariable="age">
         <inputExpression id="LiteralExpression_0gdlyvs" typeRef="integer">
-          <text>Age</text>
+          <text>age</text>
         </inputExpression>
       </input>
       <input id="InputClause_1etednt" label="BMI" camunda:inputVariable="bmi">
@@ -42,12 +42,9 @@
         </inputExpression>
       </input>
       <input id="InputClause_1n2g7vc" label="Activity level (Sport)" camunda:inputVariable="sport">
-        <inputExpression id="LiteralExpression_1qabvrd" typeRef="string">
+        <inputExpression id="LiteralExpression_1qabvrd" typeRef="integer">
           <text>sport</text>
         </inputExpression>
-        <inputValues id="UnaryTests_07xxz7g">
-          <text><![CDATA["never","rarely","often","very often"]]></text>
-        </inputValues>
       </input>
       <output id="output1" label="risk level" name="riskDecision" typeRef="string">
         <outputValues id="UnaryTests_0ztx7in">
@@ -75,7 +72,7 @@
           <text>[15..28]</text>
         </inputEntry>
         <inputEntry id="UnaryTests_18wrd2a">
-          <text><![CDATA["very often", "often"]]></text>
+          <text><![CDATA[> 1]]></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1bm80d8">
           <text><![CDATA["accept"]]></text>
@@ -84,7 +81,7 @@
       <rule id="row-67205082-3">
         <description>ungesunde Lebensweise</description>
         <inputEntry id="UnaryTests_0pyi1ky">
-          <text><![CDATA["Smoker", "Alcohol"]]></text>
+          <text><![CDATA["smoker", "alcohol"]]></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0yseqzv">
           <text></text>
@@ -111,7 +108,7 @@
       <rule id="row-67205082-2">
         <description>Drogenabhängig</description>
         <inputEntry id="UnaryTests_0jy0qgm">
-          <text><![CDATA["DrugAbuse"]]></text>
+          <text><![CDATA["drug_abuse"]]></text>
         </inputEntry>
         <inputEntry id="UnaryTests_062rxux">
           <text></text>
@@ -194,7 +191,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0wfz21s">
-          <text><![CDATA["Weak immun system", "cancer", "Genetical defects"]]></text>
+          <text><![CDATA["weak_immun_system", "cancer", "genetical_defects"]]></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0npmprr">
           <text></text>
