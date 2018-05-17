@@ -84,7 +84,7 @@
             <camunda:value id="semiprivate" name="semiprivate" />
             <camunda:value id="private" name="private" />
           </camunda:formField>
-          <camunda:formField id="supplementary_insurance" label="Supplementary Insurance" type="enum" defaultValue="None">
+          <camunda:formField id="supplementary_insurance" label="Supplementary Insurance" type="enum" defaultValue="none">
             <camunda:value id="light" name="Light" />
             <camunda:value id="classic" name="Classic" />
             <camunda:value id="medical_private" name="Medical Private" />
