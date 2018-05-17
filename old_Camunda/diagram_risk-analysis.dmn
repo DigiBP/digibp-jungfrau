@@ -26,7 +26,7 @@
           <text>surgery</text>
         </inputExpression>
       </input>
-      <input id="InputClause_0wtq297" label="Do you take regularly drugs?" camunda:inputVariable="drugs">
+      <input id="InputClause_0wtq297" label="Do you take regurarly drugs?" camunda:inputVariable="drugs">
         <inputExpression id="LiteralExpression_1bzfiho" typeRef="boolean">
           <text>drugs</text>
         </inputExpression>
