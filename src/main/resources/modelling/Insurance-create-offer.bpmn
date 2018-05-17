@@ -67,7 +67,7 @@
         <bpmn:targetRef>DataStoreReference_0orj8bv</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
     </bpmn:userTask>
-    <bpmn:userTask id="evaluate_customer_need" name="Evaluate customer need">
+    <bpmn:userTask id="evaluate_customer_need" name="Evaluate customer need" camunda:candidateGroups="Chatbot">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="model" label="Model" type="enum" defaultValue="telmed">
@@ -81,7 +81,7 @@
           </camunda:formField>
           <camunda:formField id="hospitalisation" label="Hospitalisation" type="enum" defaultValue="general">
             <camunda:value id="general" name="general" />
-            <camunda:value id="semiprivate" name="semi-private" />
+            <camunda:value id="semiprivate" name="semiprivate" />
             <camunda:value id="private" name="private" />
           </camunda:formField>
           <camunda:formField id="supplementary_insurance" label="Supplementary Insurance" type="enum" defaultValue="None">
