@@ -3,7 +3,7 @@
   <bpmn:collaboration id="Collaboration_0q1e2k4">
     <bpmn:participant id="Participant_1ixue06" name="Health Insurance" processRef="Insurance-request-workflow" />
     <bpmn:participant id="Participant_0fyh0cq" name="Customer" processRef="Process_15n0e7j" />
-    <bpmn:messageFlow id="MessageFlow_0z8ln57" name="Request-insurance-online" sourceRef="Participant_0fyh0cq" targetRef="StartEvent_1" />
+    <bpmn:messageFlow id="MessageFlow_0z8ln57" name="Request-insrunce-online" sourceRef="Participant_0fyh0cq" targetRef="StartEvent_1" />
     <bpmn:messageFlow id="MessageFlow_1y9bc26" sourceRef="send_offer_to_customer" targetRef="Participant_0fyh0cq" />
   </bpmn:collaboration>
   <bpmn:process id="Insurance-request-workflow" isExecutable="true">
@@ -31,7 +31,7 @@
     </bpmn:laneSet>
     <bpmn:sequenceFlow id="SequenceFlow_1f4cvpm" sourceRef="StartEvent_1" targetRef="ask_for_personal_data" />
     <bpmn:sequenceFlow id="SequenceFlow_0hzjf01" sourceRef="ask_for_personal_data" targetRef="evaluate_customer_need" />
-    <bpmn:userTask id="ask_for_personal_data" name="Ask for personal data" camunda:candidateGroups="Chatbot">
+    <bpmn:userTask id="ask_for_personal_data" name="ask for personal data" camunda:candidateGroups="Chatbot">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="gender" label="Gender" type="enum" defaultValue="male">
@@ -271,7 +271,7 @@ header;]]></camunda:script>
         <di:waypoint xsi:type="dc:Point" x="-26" y="238" />
         <di:waypoint xsi:type="dc:Point" x="-26" y="331" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="-16" y="207" width="90" height="25" />
+          <dc:Bounds x="-56" y="202" width="90" height="25" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1f4cvpm_di" bpmnElement="SequenceFlow_1f4cvpm">
@@ -370,7 +370,7 @@ header;]]></camunda:script>
         <di:waypoint xsi:type="dc:Point" x="746" y="908" />
         <di:waypoint xsi:type="dc:Point" x="814" y="908" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="756" y="823" width="57" height="13" />
+          <dc:Bounds x="752" y="834" width="37" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1xkfg87_di" bpmnElement="SequenceFlow_1xkfg87">
