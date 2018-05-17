@@ -136,9 +136,9 @@
     <bpmn:startEvent id="StartEvent_1" name="Insurance-request" camunda:initiator="Message-Insurance-request">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="LastName" label="Last name" type="string" defaultValue="Last Name" />
-          <camunda:formField id="FirstName" label="First Name" type="string" defaultValue="First Name" />
-          <camunda:formField id="Age" label="Your age" type="long" defaultValue="18" />
+          <camunda:formField id="lastname" label="Last name" type="string" defaultValue="Last Name" />
+          <camunda:formField id="firstname" label="First Name" type="string" defaultValue="First Name" />
+          <camunda:formField id="age" label="Your age" type="long" defaultValue="18" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:outgoing>SequenceFlow_1f4cvpm</bpmn:outgoing>
@@ -428,7 +428,7 @@ header;]]></camunda:script>
         <di:waypoint xsi:type="dc:Point" x="1374" y="599" />
         <di:waypoint xsi:type="dc:Point" x="1374" y="145" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1344" y="365.5" width="90" height="13" />
+          <dc:Bounds x="1344" y="366" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_16sj6oq_di" bpmnElement="SequenceFlow_16sj6oq">
