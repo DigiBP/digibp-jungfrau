@@ -59,6 +59,7 @@
           <camunda:formField id="drugs" label="Drugs" type="boolean" defaultValue="false" />
           <camunda:formField id="bmi" label="BMI" type="long" defaultValue="22" />
           <camunda:formField id="sport" label="Activity Level (Sport)" type="long" defaultValue="2" />
+          <camunda:formField id="email" label="Email-Adress" type="string" defaultValue="mathieu@ledoux.ch" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_1f4cvpm</bpmn:incoming>
@@ -200,20 +201,21 @@ header;]]></camunda:script>
             </camunda:inputParameter>
             <camunda:inputParameter name="payload">
               <camunda:script scriptFormat="JavaScript"><![CDATA[out = JSON.stringify({
-              "firstName": FirstName,
-              "lastName": LastName,
-              "gender": Gender,
-              "ZipCode": ZipCode,
+              "firstname": firstname,
+              "lastname": lastname,
+              "gender": gender,
+              "zipcode": zipcode,
               "addictions": addictions,
-              "healthConditions": healthConditions,
+              "health_conditions": health_conditions,
               "surgery": surgery,
+							"email": email,
               "drugs": drugs,
               "bmi": bmi,
               "sport": sport,
-              "model": Model,
-              "accident": Accident,
+              "model": model,
+              "accident": accident,
               "hospitalisation": hospitalisation,
-              "supplementaryInsurance": supplementaryInsurance,
+              "supplementary_insurance": supplementary_insurance,
               "riskCheckNeeded": riskCheckNeeded,
               "riskDecision": riskDecision
 });]]></camunda:script>
