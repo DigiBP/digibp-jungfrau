@@ -33,7 +33,7 @@
           <text><![CDATA["general"]]></text>
         </inputEntry>
         <inputEntry id="UnaryTests_004eumd">
-          <text></text>
+          <text><![CDATA[not("none")]]></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1dxayll">
           <text>true</text>
@@ -59,6 +59,17 @@
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0pnd4z3">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="row-727157959-1">
+        <inputEntry id="UnaryTests_0w4rh6u">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_05hlopp">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1x4xboe">
           <text>true</text>
         </outputEntry>
       </rule>

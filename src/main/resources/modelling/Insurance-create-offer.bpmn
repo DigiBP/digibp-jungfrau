@@ -84,13 +84,10 @@
     <bpmn:sequenceFlow id="SequenceFlow_1xkfg87" name="high risk&#10;&#10;" sourceRef="ExclusiveGateway_02jgqxs" targetRef="create_offer_with_basic_insurance">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[${riskDecision == "decline"}]]></bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:userTask id="define_special_conditions_by_expert" name="Define special conditions by expert">
+    <bpmn:userTask id="define_special_conditions_by_expert" name="Define special conditions by expert" camunda:candidateGroups="Chatbot">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="riskDecision" label="Check if additional coverage can be offered to the customer " type="enum">
-            <camunda:value id="decline" name="decline" />
-            <camunda:value id="accept" name="accept" />
-          </camunda:formField>
+          <camunda:formField id="riskDecision" label="Check if additional coverage can be offered to the customer " type="string" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_19gesxd</bpmn:incoming>
