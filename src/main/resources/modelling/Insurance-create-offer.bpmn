@@ -103,23 +103,23 @@
             <camunda:value id="private" name="private" />
           </camunda:formField>
           <camunda:formField id="model" label="Model" type="enum">
-            <camunda:value id="freechoice" name="Free choice of doctor" />
             <camunda:value id="telmed" name="Telemedicine" />
+            <camunda:value id="freechoice" name="Free choice of doctor" />
             <camunda:value id="hmo" name="Family-doctor / HMO" />
           </camunda:formField>
           <camunda:formField id="accident" label="Accident" type="enum">
-            <camunda:value id="with" name="with" />
             <camunda:value id="without" name="without" />
+            <camunda:value id="with" name="with" />
           </camunda:formField>
           <camunda:formField id="supplementary_insurance" label="Supplementary Insurance" type="enum">
+            <camunda:value id="none" name="None" />
             <camunda:value id="light" name="Light" />
             <camunda:value id="classic" name="Classic" />
             <camunda:value id="full" name="Full" />
-            <camunda:value id="none" name="None" />
           </camunda:formField>
           <camunda:formField id="franchise" label="Franchise" type="enum">
-            <camunda:value id="high" name="high" />
             <camunda:value id="low" name="low" />
+            <camunda:value id="high" name="high" />
           </camunda:formField>
         </camunda:formData>
       </bpmn:extensionElements>
