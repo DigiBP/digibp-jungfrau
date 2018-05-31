@@ -33,7 +33,7 @@
           <text><![CDATA["general"]]></text>
         </inputEntry>
         <inputEntry id="UnaryTests_004eumd">
-          <text><![CDATA[not("none")]]></text>
+          <text><![CDATA["classic", "light", "full"]]></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1dxayll">
           <text>true</text>
