@@ -150,7 +150,7 @@
           <camunda:formField id="supplementary_insurance" label="Supplementary Insurance" type="enum" defaultValue="none">
             <camunda:value id="light" name="Light" />
             <camunda:value id="classic" name="Classic" />
-            <camunda:value id="medical_private" name="Medical Private" />
+            <camunda:value id="full" name="Full" />
             <camunda:value id="none" name="None" />
           </camunda:formField>
         </camunda:formData>
@@ -306,7 +306,7 @@ header;]]></camunda:script>
       <bpmndi:BPMNShape id="StartEvent_191yjrs_di" bpmnElement="StartEvent_1">
         <dc:Bounds x="-43" y="331" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="-69" y="367" width="89" height="13" />
+          <dc:Bounds x="-69" y="367" width="90" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="UserTask_0f93vps_di" bpmnElement="ask_for_personal_data">
