@@ -247,14 +247,21 @@ header;]]></camunda:script>
         <bpmn:targetRef>DataStoreReference_0orj8bv</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
     </bpmn:userTask>
-    <bpmn:task id="evaluate_customer_need" name="Evaluate customer need">
+    <bpmn:userTask id="evaluate_customer_need" name="Evaluate customer need" camunda:candidateGroups="Chatbot">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="model" label="Model" type="string" />
+          <camunda:formField id="accident" label="Accident" type="string" />
+          <camunda:formField id="hospitalisation" label="Hospitalisation" type="string" />
+          <camunda:formField id="supplementary_insurance" label="Supplementary Insurance" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0hzjf01</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1nyjnzs</bpmn:outgoing>
-      <bpmn:dataOutputAssociation />
       <bpmn:dataOutputAssociation id="DataOutputAssociation_00cwq9d">
         <bpmn:targetRef>DataStoreReference_0orj8bv</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
-    </bpmn:task>
+    </bpmn:userTask>
   </bpmn:process>
   <bpmn:process id="Process_15n0e7j" isExecutable="false">
     <bpmn:laneSet />
@@ -294,7 +301,7 @@ header;]]></camunda:script>
         <di:waypoint xsi:type="dc:Point" x="157" y="349" />
         <di:waypoint xsi:type="dc:Point" x="199" y="349" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="133" y="327.5" width="90" height="13" />
+          <dc:Bounds x="133" y="328" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="StartEvent_191yjrs_di" bpmnElement="StartEvent_1">
@@ -310,7 +317,7 @@ header;]]></camunda:script>
         <di:waypoint xsi:type="dc:Point" x="249" y="389" />
         <di:waypoint xsi:type="dc:Point" x="249" y="599" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="219" y="487.5" width="90" height="13" />
+          <dc:Bounds x="219" y="488" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="BusinessRuleTask_0gut0xe_di" bpmnElement="assess_customer_need">
@@ -500,7 +507,7 @@ header;]]></camunda:script>
       <bpmndi:BPMNShape id="UserTask_0f93vps_di" bpmnElement="ask_for_personal_data">
         <dc:Bounds x="57" y="309" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Task_08szw11_di" bpmnElement="evaluate_customer_need">
+      <bpmndi:BPMNShape id="UserTask_0cplu3m_di" bpmnElement="evaluate_customer_need">
         <dc:Bounds x="199" y="309" width="100" height="80" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
