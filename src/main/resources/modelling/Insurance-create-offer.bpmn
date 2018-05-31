@@ -3,7 +3,7 @@
   <bpmn:collaboration id="Collaboration_0q1e2k4">
     <bpmn:participant id="Participant_1ixue06" name="Health Insurance" processRef="Insurance-request-workflow" />
     <bpmn:participant id="Participant_0fyh0cq" name="Customer" processRef="Process_15n0e7j" />
-    <bpmn:messageFlow id="MessageFlow_0z8ln57" name="Request-insurance-online" sourceRef="Participant_0fyh0cq" targetRef="StartEvent_1" />
+    <bpmn:messageFlow id="MessageFlow_0z8ln57" name="" sourceRef="Participant_0fyh0cq" targetRef="StartEvent_1" />
     <bpmn:messageFlow id="MessageFlow_1y9bc26" sourceRef="send_offer_to_customer" targetRef="Participant_0fyh0cq" />
   </bpmn:collaboration>
   <bpmn:process id="Insurance-request-workflow" isExecutable="true">
@@ -260,6 +260,9 @@ header;]]></camunda:script>
     <bpmn:task id="Task_10otibn" name="Evaluate customer need">
       <bpmn:incoming>SequenceFlow_1odlq7w</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1e6hogy</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_09a1u58">
+        <bpmn:targetRef>DataStoreReference_0orj8bv</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
     </bpmn:task>
     <bpmn:sequenceFlow id="SequenceFlow_1odlq7w" sourceRef="Task_03qwmy1" targetRef="Task_10otibn" />
     <bpmn:sequenceFlow id="SequenceFlow_1e6hogy" sourceRef="Task_10otibn" targetRef="assess_customer_need" />
@@ -292,7 +295,7 @@ header;]]></camunda:script>
       <bpmndi:BPMNShape id="StartEvent_191yjrs_di" bpmnElement="StartEvent_1">
         <dc:Bounds x="-28" y="198" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="-55" y="246" width="89" height="13" />
+          <dc:Bounds x="-55" y="240" width="89" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_0kdk1hq_di" bpmnElement="Lane_0kdk1hq">
@@ -498,6 +501,10 @@ header;]]></camunda:script>
         <bpmndi:BPMNLabel>
           <dc:Bounds x="268" y="326.5" width="0" height="13" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_09a1u58_di" bpmnElement="DataOutputAssociation_09a1u58">
+        <di:waypoint xsi:type="dc:Point" x="303" y="201" />
+        <di:waypoint xsi:type="dc:Point" x="988" y="201" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
