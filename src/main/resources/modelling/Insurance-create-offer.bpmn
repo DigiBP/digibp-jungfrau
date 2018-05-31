@@ -8,8 +8,9 @@
   </bpmn:collaboration>
   <bpmn:process id="Insurance-request-workflow" isExecutable="true">
     <bpmn:laneSet>
-      <bpmn:lane id="Lane_0fzv8w1" name="Chatbot">
-        <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
+      <bpmn:lane id="Lane_0kdk1hq" name="Expert">
+        <bpmn:flowNodeRef>define_special_conditions_by_expert</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>create_special_offer</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_0qg8vi6" name="System">
         <bpmn:flowNodeRef>evaluate_risk_level</bpmn:flowNodeRef>
@@ -22,70 +23,12 @@
         <bpmn:flowNodeRef>ExclusiveGateway_05sja2e</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_0cmrxn1</bpmn:flowNodeRef>
       </bpmn:lane>
-      <bpmn:lane id="Lane_0kdk1hq" name="Expert">
-        <bpmn:flowNodeRef>define_special_conditions_by_expert</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>create_special_offer</bpmn:flowNodeRef>
+      <bpmn:lane id="Lane_0fzv8w1" name="Chatbot">
+        <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_03qwmy1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_10otibn</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
-    <bpmn:sequenceFlow id="SequenceFlow_1slq6k1" sourceRef="StartEvent_1" targetRef="assess_customer_need" />
-    <bpmn:startEvent id="StartEvent_1" name="Insurance-request" camunda:initiator="Message-Insurance-request">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="gender" label="Gender" type="enum">
-            <camunda:value id="female" name="female" />
-            <camunda:value id="male" name="male" />
-          </camunda:formField>
-          <camunda:formField id="lastname" label="Last Name" type="string" />
-          <camunda:formField id="firstname" label="First Name" type="string" />
-          <camunda:formField id="age" label="Age" type="long" defaultValue="18" />
-          <camunda:formField id="zipcode" label="ZipCode" type="long" defaultValue="1000" />
-          <camunda:formField id="addictions" label="Addictions" type="enum" defaultValue="none">
-            <camunda:value id="smoker" name="Smoker" />
-            <camunda:value id="drug_abuse" name="Drug/Abuse" />
-            <camunda:value id="alcohol" name="Alcohol" />
-            <camunda:value id="none" name="none" />
-          </camunda:formField>
-          <camunda:formField id="health_conditions" label="Health Conditions" type="enum" defaultValue="none">
-            <camunda:value id="none" name="None" />
-            <camunda:value id="weak_immun_system" name="Weak Immun System" />
-            <camunda:value id="cancer" name="Cancer" />
-            <camunda:value id="genetical_defects" name="Genetical Defects" />
-            <camunda:value id="other" name="Other" />
-          </camunda:formField>
-          <camunda:formField id="surgery" label="Number of surgeries in the past 10 years" type="long" defaultValue="0" />
-          <camunda:formField id="drugs" label="Do you take regularly drugs?" type="boolean" defaultValue="false" />
-          <camunda:formField id="bmi" label="BMI" type="long" defaultValue="22" />
-          <camunda:formField id="sport" label="Activity Level (Sport)" type="long" defaultValue="2" />
-          <camunda:formField id="email" label="Email-Adress" type="string" defaultValue="mathieu@ledoux.ch" />
-          <camunda:formField id="model" label="Model" type="enum" defaultValue="telmed">
-            <camunda:value id="telmed" name="Telmedicine" />
-            <camunda:value id="hmo" name="Family-doctor / HMO" />
-            <camunda:value id="freechoice" name="Free choice of doctor" />
-          </camunda:formField>
-          <camunda:formField id="accident" label="Accident" type="enum" defaultValue="with">
-            <camunda:value id="with" name="with" />
-            <camunda:value id="without" name="without" />
-          </camunda:formField>
-          <camunda:formField id="hospitalisation" label="Hospitalisation" type="enum" defaultValue="general">
-            <camunda:value id="general" name="general" />
-            <camunda:value id="semiprivate" name="semiprivate" />
-            <camunda:value id="private" name="private" />
-          </camunda:formField>
-          <camunda:formField id="supplementary_insurance" label="Supplementary Insurance" type="enum">
-            <camunda:value id="light" name="Light" />
-            <camunda:value id="classic" name="Classic" />
-            <camunda:value id="full" name="Full" />
-            <camunda:value id="none" name="None" />
-          </camunda:formField>
-          <camunda:formField id="franchise" label="Franchise" type="enum">
-            <camunda:value id="high" name="high" />
-            <camunda:value id="low" name="low" />
-          </camunda:formField>
-        </camunda:formData>
-      </bpmn:extensionElements>
-      <bpmn:outgoing>SequenceFlow_1slq6k1</bpmn:outgoing>
-      <bpmn:messageEventDefinition messageRef="Message_1y0qwtl" />
-    </bpmn:startEvent>
     <bpmn:userTask id="define_special_conditions_by_expert" name="Define special conditions by expert" camunda:candidateGroups="Chatbot">
       <bpmn:extensionElements>
         <camunda:formData>
@@ -156,7 +99,7 @@
       </bpmn:dataInputAssociation>
     </bpmn:task>
     <bpmn:businessRuleTask id="assess_customer_need" name="Assess customer need" camunda:resultVariable="riskCheckNeeded" camunda:decisionRef="assess_customer_need" camunda:mapDecisionResult="singleEntry">
-      <bpmn:incoming>SequenceFlow_1slq6k1</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_1e6hogy</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_165xtbx</bpmn:outgoing>
     </bpmn:businessRuleTask>
     <bpmn:serviceTask id="store_data" name="Store Data">
@@ -227,6 +170,8 @@ header;]]></camunda:script>
         <bpmn:targetRef>Property_1ao80o7</bpmn:targetRef>
       </bpmn:dataInputAssociation>
     </bpmn:task>
+    <bpmn:dataStoreReference id="DataStoreReference_0orj8bv" />
+    <bpmn:sequenceFlow id="SequenceFlow_1slq6k1" sourceRef="StartEvent_1" targetRef="Task_03qwmy1" />
     <bpmn:sequenceFlow id="SequenceFlow_19gesxd" name="risk unclear" sourceRef="ExclusiveGateway_02jgqxs" targetRef="define_special_conditions_by_expert">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[${riskDecision == "unclear"}]]></bpmn:conditionExpression>
     </bpmn:sequenceFlow>
@@ -250,7 +195,74 @@ header;]]></camunda:script>
     <bpmn:sequenceFlow id="SequenceFlow_1jhuml5" sourceRef="create_special_offer" targetRef="store_data" />
     <bpmn:sequenceFlow id="SequenceFlow_10332z2" sourceRef="store_data" targetRef="send_offer_to_customer" />
     <bpmn:sequenceFlow id="SequenceFlow_1abkkfg" sourceRef="send_offer_to_customer" targetRef="EndEvent_0cmrxn1" />
-    <bpmn:dataStoreReference id="DataStoreReference_0orj8bv" />
+    <bpmn:startEvent id="StartEvent_1" name="Insurance-request" camunda:initiator="Message-Insurance-request">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="gender" label="Gender" type="enum">
+            <camunda:value id="female" name="female" />
+            <camunda:value id="male" name="male" />
+          </camunda:formField>
+          <camunda:formField id="lastname" label="Last Name" type="string" />
+          <camunda:formField id="firstname" label="First Name" type="string" />
+          <camunda:formField id="age" label="Age" type="long" defaultValue="18" />
+          <camunda:formField id="zipcode" label="ZipCode" type="long" defaultValue="1000" />
+          <camunda:formField id="addictions" label="Addictions" type="enum" defaultValue="none">
+            <camunda:value id="smoker" name="Smoker" />
+            <camunda:value id="drug_abuse" name="Drug/Abuse" />
+            <camunda:value id="alcohol" name="Alcohol" />
+            <camunda:value id="none" name="none" />
+          </camunda:formField>
+          <camunda:formField id="health_conditions" label="Health Conditions" type="enum" defaultValue="none">
+            <camunda:value id="none" name="None" />
+            <camunda:value id="weak_immun_system" name="Weak Immun System" />
+            <camunda:value id="cancer" name="Cancer" />
+            <camunda:value id="genetical_defects" name="Genetical Defects" />
+            <camunda:value id="other" name="Other" />
+          </camunda:formField>
+          <camunda:formField id="surgery" label="Number of surgeries in the past 10 years" type="long" defaultValue="0" />
+          <camunda:formField id="drugs" label="Do you take regularly drugs?" type="boolean" defaultValue="false" />
+          <camunda:formField id="bmi" label="BMI" type="long" defaultValue="22" />
+          <camunda:formField id="sport" label="Activity Level (Sport)" type="long" defaultValue="2" />
+          <camunda:formField id="email" label="Email-Adress" type="string" defaultValue="mathieu@ledoux.ch" />
+          <camunda:formField id="model" label="Model" type="enum" defaultValue="telmed">
+            <camunda:value id="telmed" name="Telmedicine" />
+            <camunda:value id="hmo" name="Family-doctor / HMO" />
+            <camunda:value id="freechoice" name="Free choice of doctor" />
+          </camunda:formField>
+          <camunda:formField id="accident" label="Accident" type="enum" defaultValue="with">
+            <camunda:value id="with" name="with" />
+            <camunda:value id="without" name="without" />
+          </camunda:formField>
+          <camunda:formField id="hospitalisation" label="Hospitalisation" type="enum" defaultValue="general">
+            <camunda:value id="general" name="general" />
+            <camunda:value id="semiprivate" name="semiprivate" />
+            <camunda:value id="private" name="private" />
+          </camunda:formField>
+          <camunda:formField id="supplementary_insurance" label="Supplementary Insurance" type="enum">
+            <camunda:value id="light" name="Light" />
+            <camunda:value id="classic" name="Classic" />
+            <camunda:value id="full" name="Full" />
+            <camunda:value id="none" name="None" />
+          </camunda:formField>
+          <camunda:formField id="franchise" label="Franchise" type="enum">
+            <camunda:value id="high" name="high" />
+            <camunda:value id="low" name="low" />
+          </camunda:formField>
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:outgoing>SequenceFlow_1slq6k1</bpmn:outgoing>
+      <bpmn:messageEventDefinition messageRef="Message_1y0qwtl" />
+    </bpmn:startEvent>
+    <bpmn:task id="Task_03qwmy1" name="Ask for personal data">
+      <bpmn:incoming>SequenceFlow_1slq6k1</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1odlq7w</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_10otibn" name="Evaluate customer need">
+      <bpmn:incoming>SequenceFlow_1odlq7w</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1e6hogy</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="SequenceFlow_1odlq7w" sourceRef="Task_03qwmy1" targetRef="Task_10otibn" />
+    <bpmn:sequenceFlow id="SequenceFlow_1e6hogy" sourceRef="Task_10otibn" targetRef="assess_customer_need" />
   </bpmn:process>
   <bpmn:process id="Process_15n0e7j" isExecutable="false">
     <bpmn:laneSet />
@@ -259,212 +271,232 @@ header;]]></camunda:script>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0q1e2k4">
       <bpmndi:BPMNShape id="Participant_1ixue06_di" bpmnElement="Participant_1ixue06">
-        <dc:Bounds x="-119" y="159" width="1402" height="565" />
+        <dc:Bounds x="-119" y="159" width="1638" height="565" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Participant_0fyh0cq_di" bpmnElement="Participant_0fyh0cq">
-        <dc:Bounds x="-116" y="-9" width="1396" height="132" />
+        <dc:Bounds x="-116" y="-9" width="1632" height="132" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_0fzv8w1_di" bpmnElement="Lane_0fzv8w1">
-        <dc:Bounds x="-89" y="159" width="1372" height="120" />
+        <dc:Bounds x="-89" y="159" width="1608" height="120" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_0qg8vi6_di" bpmnElement="Lane_0qg8vi6">
-        <dc:Bounds x="-89" y="279" width="1372" height="280" />
+        <dc:Bounds x="-89" y="279" width="1608" height="280" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="MessageFlow_0z8ln57_di" bpmnElement="MessageFlow_0z8ln57">
-        <di:waypoint xsi:type="dc:Point" x="16" y="123" />
-        <di:waypoint xsi:type="dc:Point" x="16" y="198" />
+        <di:waypoint xsi:type="dc:Point" x="-11" y="123" />
+        <di:waypoint xsi:type="dc:Point" x="-11" y="198" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="-19.076587577551322" y="69.63440860215053" width="81" height="25" />
+          <dc:Bounds x="-46" y="73.00000000000001" width="81" height="25" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="StartEvent_191yjrs_di" bpmnElement="StartEvent_1">
-        <dc:Bounds x="-1" y="198" width="36" height="36" />
+        <dc:Bounds x="-28" y="198" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="50" y="209" width="89" height="13" />
+          <dc:Bounds x="-55" y="246" width="89" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_0kdk1hq_di" bpmnElement="Lane_0kdk1hq">
-        <dc:Bounds x="-89" y="559" width="1372" height="165" />
+        <dc:Bounds x="-89" y="559" width="1608" height="165" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BusinessRuleTask_0gut0xe_di" bpmnElement="assess_customer_need">
-        <dc:Bounds x="-33" y="411" width="100" height="80" />
+        <dc:Bounds x="203" y="411" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ExclusiveGateway_05sja2e_di" bpmnElement="ExclusiveGateway_05sja2e" isMarkerVisible="true">
-        <dc:Bounds x="163" y="426" width="50" height="50" />
+        <dc:Bounds x="399" y="426" width="50" height="50" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="159" y="479" width="61" height="38" />
+          <dc:Bounds x="395" y="479" width="61" height="38" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_165xtbx_di" bpmnElement="SequenceFlow_165xtbx">
-        <di:waypoint xsi:type="dc:Point" x="67" y="451" />
-        <di:waypoint xsi:type="dc:Point" x="163" y="451" />
+        <di:waypoint xsi:type="dc:Point" x="303" y="451" />
+        <di:waypoint xsi:type="dc:Point" x="399" y="451" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="70" y="430" width="90" height="13" />
+          <dc:Bounds x="306" y="430" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Task_15icet2_di" bpmnElement="create_offer_with_basic_insurance">
-        <dc:Bounds x="727" y="306" width="100" height="80" />
+        <dc:Bounds x="963" y="306" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_0jf8hel_di" bpmnElement="SequenceFlow_0jf8hel">
-        <di:waypoint xsi:type="dc:Point" x="188" y="426" />
-        <di:waypoint xsi:type="dc:Point" x="188" y="325" />
-        <di:waypoint xsi:type="dc:Point" x="727" y="325" />
+        <di:waypoint xsi:type="dc:Point" x="424" y="426" />
+        <di:waypoint xsi:type="dc:Point" x="424" y="325" />
+        <di:waypoint xsi:type="dc:Point" x="963" y="325" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="195.05027932960894" y="349.40298507462694" width="13" height="13" />
+          <dc:Bounds x="431" y="349" width="13" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1ot23do_di" bpmnElement="SequenceFlow_1ot23do">
-        <di:waypoint xsi:type="dc:Point" x="213" y="451" />
-        <di:waypoint xsi:type="dc:Point" x="298" y="451" />
+        <di:waypoint xsi:type="dc:Point" x="449" y="451" />
+        <di:waypoint xsi:type="dc:Point" x="534" y="451" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="247" y="429" width="18" height="13" />
+          <dc:Bounds x="483" y="429" width="18" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="BusinessRuleTask_0ludn3u_di" bpmnElement="evaluate_risk_level">
-        <dc:Bounds x="298" y="411" width="100" height="80" />
+        <dc:Bounds x="534" y="411" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_16b5f1q_di" bpmnElement="SequenceFlow_16b5f1q">
-        <di:waypoint xsi:type="dc:Point" x="398" y="451" />
-        <di:waypoint xsi:type="dc:Point" x="444" y="451" />
-        <di:waypoint xsi:type="dc:Point" x="444" y="451" />
-        <di:waypoint xsi:type="dc:Point" x="489" y="451" />
+        <di:waypoint xsi:type="dc:Point" x="634" y="451" />
+        <di:waypoint xsi:type="dc:Point" x="680" y="451" />
+        <di:waypoint xsi:type="dc:Point" x="680" y="451" />
+        <di:waypoint xsi:type="dc:Point" x="725" y="451" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="414" y="445" width="90" height="13" />
+          <dc:Bounds x="650" y="445" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="UserTask_03jdj0w_di" bpmnElement="define_special_conditions_by_expert">
-        <dc:Bounds x="582" y="612" width="100" height="80" />
+        <dc:Bounds x="818" y="612" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ExclusiveGateway_02jgqxs_di" bpmnElement="ExclusiveGateway_02jgqxs" isMarkerVisible="true">
-        <dc:Bounds x="489" y="426" width="50" height="50" />
+        <dc:Bounds x="725" y="426" width="50" height="50" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="432" y="481" width="79" height="25" />
+          <dc:Bounds x="668" y="481" width="79" height="25" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_19gesxd_di" bpmnElement="SequenceFlow_19gesxd">
-        <di:waypoint xsi:type="dc:Point" x="514" y="476" />
-        <di:waypoint xsi:type="dc:Point" x="514" y="652" />
-        <di:waypoint xsi:type="dc:Point" x="582" y="652" />
+        <di:waypoint xsi:type="dc:Point" x="750" y="476" />
+        <di:waypoint xsi:type="dc:Point" x="750" y="652" />
+        <di:waypoint xsi:type="dc:Point" x="818" y="652" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="520" y="589.9590163934427" width="57" height="13" />
+          <dc:Bounds x="756" y="590" width="57" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1xkfg87_di" bpmnElement="SequenceFlow_1xkfg87">
-        <di:waypoint xsi:type="dc:Point" x="514" y="426" />
-        <di:waypoint xsi:type="dc:Point" x="514" y="361" />
-        <di:waypoint xsi:type="dc:Point" x="727" y="361" />
+        <di:waypoint xsi:type="dc:Point" x="750" y="426" />
+        <di:waypoint xsi:type="dc:Point" x="750" y="361" />
+        <di:waypoint xsi:type="dc:Point" x="963" y="361" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="526.1533018867924" y="336" width="41" height="38" />
+          <dc:Bounds x="762" y="336" width="41" height="38" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Task_02clu8u_di" bpmnElement="create_offer_with_additional_insurance">
-        <dc:Bounds x="661" y="411" width="100" height="80" />
+        <dc:Bounds x="897" y="411" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_0twh9co_di" bpmnElement="SequenceFlow_0twh9co">
-        <di:waypoint xsi:type="dc:Point" x="539" y="451" />
-        <di:waypoint xsi:type="dc:Point" x="661" y="451" />
+        <di:waypoint xsi:type="dc:Point" x="775" y="451" />
+        <di:waypoint xsi:type="dc:Point" x="897" y="451" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="558" y="430" width="37" height="13" />
+          <dc:Bounds x="794" y="430" width="37" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="DataStoreReference_0orj8bv_di" bpmnElement="DataStoreReference_0orj8bv">
-        <dc:Bounds x="752" y="191" width="50" height="50" />
+        <dc:Bounds x="988" y="191" width="50" height="50" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="732" y="251" width="90" height="13" />
+          <dc:Bounds x="968" y="251" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Task_1fegmkx_di" bpmnElement="create_special_offer">
-        <dc:Bounds x="846" y="612" width="100" height="80" />
+        <dc:Bounds x="1082" y="612" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_0rvt4si_di" bpmnElement="SequenceFlow_0rvt4si">
-        <di:waypoint xsi:type="dc:Point" x="682" y="652" />
-        <di:waypoint xsi:type="dc:Point" x="846" y="652" />
+        <di:waypoint xsi:type="dc:Point" x="918" y="652" />
+        <di:waypoint xsi:type="dc:Point" x="1082" y="652" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="719" y="631" width="90" height="13" />
+          <dc:Bounds x="955" y="631" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Task_02ytnhx_di" bpmnElement="send_offer_to_customer">
-        <dc:Bounds x="1092" y="411" width="100" height="80" />
+        <dc:Bounds x="1328" y="411" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_0ef7keo_di" bpmnElement="SequenceFlow_0ef7keo">
-        <di:waypoint xsi:type="dc:Point" x="761" y="451" />
-        <di:waypoint xsi:type="dc:Point" x="798" y="451" />
-        <di:waypoint xsi:type="dc:Point" x="798" y="451" />
-        <di:waypoint xsi:type="dc:Point" x="846" y="451" />
+        <di:waypoint xsi:type="dc:Point" x="997" y="451" />
+        <di:waypoint xsi:type="dc:Point" x="1034" y="451" />
+        <di:waypoint xsi:type="dc:Point" x="1034" y="451" />
+        <di:waypoint xsi:type="dc:Point" x="1082" y="451" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="768" y="445" width="90" height="13" />
+          <dc:Bounds x="1004" y="445" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="MessageFlow_1y9bc26_di" bpmnElement="MessageFlow_1y9bc26">
-        <di:waypoint xsi:type="dc:Point" x="1142" y="411" />
-        <di:waypoint xsi:type="dc:Point" x="1142" y="123" />
+        <di:waypoint xsi:type="dc:Point" x="1378" y="411" />
+        <di:waypoint xsi:type="dc:Point" x="1378" y="123" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1112" y="260.5" width="90" height="13" />
+          <dc:Bounds x="1348" y="260.5" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_16sj6oq_di" bpmnElement="SequenceFlow_16sj6oq">
-        <di:waypoint xsi:type="dc:Point" x="827" y="346" />
-        <di:waypoint xsi:type="dc:Point" x="896" y="346" />
-        <di:waypoint xsi:type="dc:Point" x="896" y="411" />
+        <di:waypoint xsi:type="dc:Point" x="1063" y="346" />
+        <di:waypoint xsi:type="dc:Point" x="1132" y="346" />
+        <di:waypoint xsi:type="dc:Point" x="1132" y="411" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="816.5" y="324.5" width="90" height="13" />
+          <dc:Bounds x="1053" y="325" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="EndEvent_0cmrxn1_di" bpmnElement="EndEvent_0cmrxn1">
-        <dc:Bounds x="1228" y="433" width="36" height="36" />
+        <dc:Bounds x="1464" y="433" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1201" y="472" width="90" height="13" />
+          <dc:Bounds x="1437" y="472" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_1abkkfg_di" bpmnElement="SequenceFlow_1abkkfg">
-        <di:waypoint xsi:type="dc:Point" x="1192" y="451" />
-        <di:waypoint xsi:type="dc:Point" x="1228" y="451" />
+        <di:waypoint xsi:type="dc:Point" x="1428" y="451" />
+        <di:waypoint xsi:type="dc:Point" x="1464" y="451" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1165" y="430" width="90" height="13" />
+          <dc:Bounds x="1401" y="430" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataInputAssociation_1uv9qfv_di" bpmnElement="DataInputAssociation_1uv9qfv">
-        <di:waypoint xsi:type="dc:Point" x="777" y="241" />
-        <di:waypoint xsi:type="dc:Point" x="777" y="306" />
+        <di:waypoint xsi:type="dc:Point" x="1013" y="241" />
+        <di:waypoint xsi:type="dc:Point" x="1013" y="306" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataInputAssociation_1pf8cv6_di" bpmnElement="DataInputAssociation_1pf8cv6">
-        <di:waypoint xsi:type="dc:Point" x="752" y="216" />
-        <di:waypoint xsi:type="dc:Point" x="622" y="216" />
-        <di:waypoint xsi:type="dc:Point" x="622" y="612" />
+        <di:waypoint xsi:type="dc:Point" x="988" y="216" />
+        <di:waypoint xsi:type="dc:Point" x="858" y="216" />
+        <di:waypoint xsi:type="dc:Point" x="858" y="612" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataInputAssociation_1lvnuc7_di" bpmnElement="DataInputAssociation_1lvnuc7">
-        <di:waypoint xsi:type="dc:Point" x="752" y="230" />
-        <di:waypoint xsi:type="dc:Point" x="688" y="230" />
-        <di:waypoint xsi:type="dc:Point" x="688" y="411" />
+        <di:waypoint xsi:type="dc:Point" x="988" y="230" />
+        <di:waypoint xsi:type="dc:Point" x="924" y="230" />
+        <di:waypoint xsi:type="dc:Point" x="924" y="411" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_10332z2_di" bpmnElement="SequenceFlow_10332z2">
-        <di:waypoint xsi:type="dc:Point" x="946" y="451" />
-        <di:waypoint xsi:type="dc:Point" x="1092" y="451" />
+        <di:waypoint xsi:type="dc:Point" x="1182" y="451" />
+        <di:waypoint xsi:type="dc:Point" x="1328" y="451" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="974" y="430" width="90" height="13" />
+          <dc:Bounds x="1210" y="430" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="ServiceTask_17d0wd8_di" bpmnElement="store_data">
-        <dc:Bounds x="846" y="411" width="100" height="80" />
+        <dc:Bounds x="1082" y="411" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="DataOutputAssociation_1t837rd_di" bpmnElement="DataOutputAssociation_1t837rd">
-        <di:waypoint xsi:type="dc:Point" x="946" y="640" />
-        <di:waypoint xsi:type="dc:Point" x="985" y="640" />
-        <di:waypoint xsi:type="dc:Point" x="985" y="216" />
-        <di:waypoint xsi:type="dc:Point" x="802" y="216" />
+        <di:waypoint xsi:type="dc:Point" x="1182" y="640" />
+        <di:waypoint xsi:type="dc:Point" x="1221" y="640" />
+        <di:waypoint xsi:type="dc:Point" x="1221" y="216" />
+        <di:waypoint xsi:type="dc:Point" x="1038" y="216" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1jhuml5_di" bpmnElement="SequenceFlow_1jhuml5">
-        <di:waypoint xsi:type="dc:Point" x="896" y="612" />
-        <di:waypoint xsi:type="dc:Point" x="896" y="491" />
+        <di:waypoint xsi:type="dc:Point" x="1132" y="612" />
+        <di:waypoint xsi:type="dc:Point" x="1132" y="491" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="866" y="545" width="90" height="13" />
+          <dc:Bounds x="1102" y="545" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1slq6k1_di" bpmnElement="SequenceFlow_1slq6k1">
-        <di:waypoint xsi:type="dc:Point" x="17" y="234" />
-        <di:waypoint xsi:type="dc:Point" x="17" y="411" />
+        <di:waypoint xsi:type="dc:Point" x="8" y="216" />
+        <di:waypoint xsi:type="dc:Point" x="59" y="216" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="32" y="316" width="0" height="13" />
+          <dc:Bounds x="-11.5" y="194.5" width="90" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Task_03qwmy1_di" bpmnElement="Task_03qwmy1">
+        <dc:Bounds x="59.418495297805634" y="176" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_10otibn_di" bpmnElement="Task_10otibn">
+        <dc:Bounds x="203" y="176" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1odlq7w_di" bpmnElement="SequenceFlow_1odlq7w">
+        <di:waypoint xsi:type="dc:Point" x="159" y="216" />
+        <di:waypoint xsi:type="dc:Point" x="203" y="216" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="181" y="194" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1e6hogy_di" bpmnElement="SequenceFlow_1e6hogy">
+        <di:waypoint xsi:type="dc:Point" x="253" y="256" />
+        <di:waypoint xsi:type="dc:Point" x="253" y="411" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="268" y="326.5" width="0" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
