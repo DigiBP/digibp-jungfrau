@@ -144,7 +144,7 @@
             <camunda:value id="semiprivate" name="semiprivate" />
             <camunda:value id="private" name="private" />
           </camunda:formField>
-          <camunda:formField id="supplementary_insurance" label="Supplementary Insurance" type="enum" defaultValue="none">
+          <camunda:formField id="supplementary_insurance" label="Supplementary Insurance" type="enum">
             <camunda:value id="light" name="Light" />
             <camunda:value id="classic" name="Classic" />
             <camunda:value id="full" name="Full" />
@@ -227,8 +227,7 @@ header;]]></camunda:script>
               "accident": accident,
               "hospitalisation": hospitalisation,
               "supplementary_insurance": supplementary_insurance,
-              "riskCheckNeeded": riskCheckNeeded,
-              "riskDecision": riskDecision
+              "riskCheckNeeded": riskCheckNeeded
 });]]></camunda:script>
             </camunda:inputParameter>
             <camunda:outputParameter name="processVariableResponse">
