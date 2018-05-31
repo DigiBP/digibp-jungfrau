@@ -4,7 +4,7 @@
     <extensionElements>
       <biodi:bounds x="200" y="200" width="180" height="80" />
     </extensionElements>
-    <decisionTable id="decisionTable">
+    <decisionTable id="decisionTable" hitPolicy="FIRST">
       <input id="input1" label="Hospitalisation" camunda:inputVariable="hospitalisation">
         <inputExpression id="inputExpression1" typeRef="string">
           <text>hospitalisation</text>
@@ -33,7 +33,7 @@
           <text><![CDATA["general"]]></text>
         </inputEntry>
         <inputEntry id="UnaryTests_004eumd">
-          <text><![CDATA[not("none")]]></text>
+          <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1dxayll">
           <text>true</text>

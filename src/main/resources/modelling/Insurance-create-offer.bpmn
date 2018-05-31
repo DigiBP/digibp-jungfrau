@@ -87,7 +87,7 @@
     <bpmn:userTask id="define_special_conditions_by_expert" name="Define special conditions by expert">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="riskDecision" label="Check if additional coverage can be offered to the customer " type="enum" defaultValue="decline">
+          <camunda:formField id="riskDecision" label="Check if additional coverage can be offered to the customer " type="enum">
             <camunda:value id="decline" name="decline" />
             <camunda:value id="accept" name="accept" />
           </camunda:formField>
