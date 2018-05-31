@@ -10,42 +10,20 @@
           <text>hospitalisation</text>
         </inputExpression>
       </input>
-      <input id="InputClause_0q6pkcg" label="SupplementaryInsurance" camunda:inputVariable="supplementary_insurance">
-        <inputExpression id="LiteralExpression_0fp3o79" typeRef="string">
-          <text>supplementary_insurance</text>
-        </inputExpression>
-      </input>
       <output id="output1" label="Risk check needed" name="riskCheckNeeded" typeRef="boolean" />
       <rule id="row-757014067-1">
         <description></description>
         <inputEntry id="UnaryTests_1j1o61w">
           <text><![CDATA["general"]]></text>
         </inputEntry>
-        <inputEntry id="UnaryTests_1tqy7wa">
-          <text><![CDATA["none"]]></text>
-        </inputEntry>
         <outputEntry id="LiteralExpression_0ja3ki5">
           <text>false</text>
-        </outputEntry>
-      </rule>
-      <rule id="row-55467011-1">
-        <inputEntry id="UnaryTests_07p500t">
-          <text><![CDATA["general"]]></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_004eumd">
-          <text><![CDATA["classic", "light", "full"]]></text>
-        </inputEntry>
-        <outputEntry id="LiteralExpression_1dxayll">
-          <text>true</text>
         </outputEntry>
       </rule>
       <rule id="row-757014067-2">
         <description></description>
         <inputEntry id="UnaryTests_00m6g1y">
           <text><![CDATA["semiprivate"]]></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_0t0uxnb">
-          <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_03atz3q">
           <text>true</text>
@@ -55,18 +33,12 @@
         <inputEntry id="UnaryTests_13eko15">
           <text><![CDATA["private"]]></text>
         </inputEntry>
-        <inputEntry id="UnaryTests_1o2tfmx">
-          <text></text>
-        </inputEntry>
         <outputEntry id="LiteralExpression_0pnd4z3">
           <text>true</text>
         </outputEntry>
       </rule>
       <rule id="row-727157959-1">
         <inputEntry id="UnaryTests_0w4rh6u">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_05hlopp">
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1x4xboe">

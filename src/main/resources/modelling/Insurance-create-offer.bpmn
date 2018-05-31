@@ -9,9 +9,9 @@
   <bpmn:process id="Insurance-request-workflow" isExecutable="true">
     <bpmn:laneSet>
       <bpmn:lane id="Lane_0fzv8w1" name="Chatbot">
-        <bpmn:flowNodeRef>ask_for_personal_data</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>evaluate_customer_need</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>evaluate_customer_need</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ask_for_personal_data</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_0qg8vi6" name="System">
         <bpmn:flowNodeRef>evaluate_risk_level</bpmn:flowNodeRef>
@@ -31,44 +31,6 @@
     </bpmn:laneSet>
     <bpmn:sequenceFlow id="SequenceFlow_1f4cvpm" sourceRef="StartEvent_1" targetRef="ask_for_personal_data" />
     <bpmn:sequenceFlow id="SequenceFlow_0hzjf01" sourceRef="ask_for_personal_data" targetRef="evaluate_customer_need" />
-    <bpmn:userTask id="ask_for_personal_data" name="Ask for personal data" camunda:candidateGroups="Chatbot">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="gender" label="Gender" type="string" />
-          <camunda:formField id="lastname" label="Last Name" type="string" />
-          <camunda:formField id="firstname" label="First Name" type="string" />
-          <camunda:formField id="age" label="Age" type="long" />
-          <camunda:formField id="zipcode" label="ZipCode" type="long" />
-          <camunda:formField id="addictions" label="Addictions" type="string" />
-          <camunda:formField id="health_conditions" label="Health Conditions" type="string" />
-          <camunda:formField id="surgery" label="Surgery" type="long" />
-          <camunda:formField id="drugs" label="Drugs" type="boolean" />
-          <camunda:formField id="bmi" label="BMI" type="long" />
-          <camunda:formField id="sport" label="Activity Level (Sport)" type="long" />
-          <camunda:formField id="email" label="Email-Adress" type="string" />
-        </camunda:formData>
-      </bpmn:extensionElements>
-      <bpmn:incoming>SequenceFlow_1f4cvpm</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0hzjf01</bpmn:outgoing>
-      <bpmn:dataOutputAssociation id="DataOutputAssociation_0u7vr64">
-        <bpmn:targetRef>DataStoreReference_0orj8bv</bpmn:targetRef>
-      </bpmn:dataOutputAssociation>
-    </bpmn:userTask>
-    <bpmn:userTask id="evaluate_customer_need" name="Evaluate customer need" camunda:candidateGroups="Chatbot">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="model" label="Model" type="string" />
-          <camunda:formField id="accident" label="Accident" type="string" />
-          <camunda:formField id="hospitalisation" label="Hospitalisation" type="string" />
-          <camunda:formField id="supplementary_insurance" label="Supplementary Insurance" type="string" />
-        </camunda:formData>
-      </bpmn:extensionElements>
-      <bpmn:incoming>SequenceFlow_0hzjf01</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_1nyjnzs</bpmn:outgoing>
-      <bpmn:dataOutputAssociation id="DataOutputAssociation_00cwq9d">
-        <bpmn:targetRef>DataStoreReference_0orj8bv</bpmn:targetRef>
-      </bpmn:dataOutputAssociation>
-    </bpmn:userTask>
     <bpmn:sequenceFlow id="SequenceFlow_1nyjnzs" sourceRef="evaluate_customer_need" targetRef="assess_customer_need" />
     <bpmn:sequenceFlow id="SequenceFlow_165xtbx" sourceRef="assess_customer_need" targetRef="ExclusiveGateway_05sja2e" />
     <bpmn:sequenceFlow id="SequenceFlow_0jf8hel" name="no" sourceRef="ExclusiveGateway_05sja2e" targetRef="create_offer_with_basic_insurance">
@@ -150,6 +112,10 @@
             <camunda:value id="full" name="Full" />
             <camunda:value id="none" name="None" />
           </camunda:formField>
+          <camunda:formField id="franchise" label="Franchise" type="enum">
+            <camunda:value id="high" name="high" />
+            <camunda:value id="low" name="low" />
+          </camunda:formField>
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:outgoing>SequenceFlow_1f4cvpm</bpmn:outgoing>
@@ -216,6 +182,7 @@ header;]]></camunda:script>
               "gender": gender,
               "zipcode": zipcode,
               "age": age,
+              "franchise": franchise,
               "addictions": addictions,
               "health_conditions": health_conditions,
               "surgery": surgery,
@@ -226,8 +193,7 @@ header;]]></camunda:script>
               "model": model,
               "accident": accident,
               "hospitalisation": hospitalisation,
-              "supplementary_insurance": supplementary_insurance,
-              "riskCheckNeeded": riskCheckNeeded
+              "supplementary_insurance": supplementary_insurance
 });]]></camunda:script>
             </camunda:inputParameter>
             <camunda:outputParameter name="processVariableResponse">
@@ -258,6 +224,22 @@ header;]]></camunda:script>
     </bpmn:task>
     <bpmn:sequenceFlow id="SequenceFlow_1abkkfg" sourceRef="send_offer_to_customer" targetRef="EndEvent_0cmrxn1" />
     <bpmn:sequenceFlow id="SequenceFlow_1jhuml5" sourceRef="create_special_offer" targetRef="store_data" />
+    <bpmn:task id="evaluate_customer_need" name="Evaluate customer need">
+      <bpmn:incoming>SequenceFlow_0hzjf01</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1nyjnzs</bpmn:outgoing>
+      <bpmn:dataOutputAssociation />
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_00cwq9d">
+        <bpmn:targetRef>DataStoreReference_0orj8bv</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:task>
+    <bpmn:task id="ask_for_personal_data" name="Ask for personal data">
+      <bpmn:incoming>SequenceFlow_1f4cvpm</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0hzjf01</bpmn:outgoing>
+      <bpmn:dataOutputAssociation />
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_0u7vr64">
+        <bpmn:targetRef>DataStoreReference_0orj8bv</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:task>
   </bpmn:process>
   <bpmn:process id="Process_15n0e7j" isExecutable="false">
     <bpmn:laneSet />
@@ -303,14 +285,8 @@ header;]]></camunda:script>
       <bpmndi:BPMNShape id="StartEvent_191yjrs_di" bpmnElement="StartEvent_1">
         <dc:Bounds x="-43" y="331" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="-69" y="367" width="90" height="12" />
+          <dc:Bounds x="-68" y="367" width="89" height="13" />
         </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="UserTask_0f93vps_di" bpmnElement="ask_for_personal_data">
-        <dc:Bounds x="57" y="309" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="UserTask_0cplu3m_di" bpmnElement="evaluate_customer_need">
-        <dc:Bounds x="199" y="309" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_0kdk1hq_di" bpmnElement="Lane_0kdk1hq">
         <dc:Bounds x="-89" y="789" width="1777" height="304" />
@@ -506,6 +482,12 @@ header;]]></camunda:script>
           <dc:Bounds x="1143" y="766.5" width="0" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Task_0m21evj_di" bpmnElement="evaluate_customer_need">
+        <dc:Bounds x="199" y="309" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_1xvx6sg_di" bpmnElement="ask_for_personal_data">
+        <dc:Bounds x="57" y="309" width="100" height="80" />
+      </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>
