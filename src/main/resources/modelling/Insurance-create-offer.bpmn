@@ -34,32 +34,18 @@
     <bpmn:userTask id="ask_for_personal_data" name="Ask for personal data" camunda:candidateGroups="Chatbot">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="gender" label="Gender" type="enum" defaultValue="male">
-            <camunda:value id="female" name="female" />
-            <camunda:value id="male" name="male" />
-          </camunda:formField>
+          <camunda:formField id="gender" label="Gender" type="string" />
           <camunda:formField id="lastname" label="Last Name" type="string" />
           <camunda:formField id="firstname" label="First Name" type="string" />
-          <camunda:formField id="age" label="Age" type="long" defaultValue="18" />
-          <camunda:formField id="zipcode" label="ZipCode" type="long" defaultValue="1000" />
-          <camunda:formField id="addictions" label="Addictions" type="enum" defaultValue="none">
-            <camunda:value id="smoker" name="Smoker" />
-            <camunda:value id="drug_abuse" name="Drug/Abuse" />
-            <camunda:value id="alcohol" name="Alcohol" />
-            <camunda:value id="none" name="none" />
-          </camunda:formField>
-          <camunda:formField id="health_conditions" label="Health Conditions" type="enum" defaultValue="none">
-            <camunda:value id="none" name="None" />
-            <camunda:value id="weak_immun_system" name="Weak Immun System" />
-            <camunda:value id="cancer" name="Cancer" />
-            <camunda:value id="genetical_defects" name="Genetical Defects" />
-            <camunda:value id="other" name="Other" />
-          </camunda:formField>
-          <camunda:formField id="surgery" label="Surgery" type="long" defaultValue="0" />
-          <camunda:formField id="drugs" label="Drugs" type="boolean" defaultValue="false" />
-          <camunda:formField id="bmi" label="BMI" type="long" defaultValue="22" />
-          <camunda:formField id="sport" label="Activity Level (Sport)" type="long" defaultValue="2" />
-          <camunda:formField id="email" label="Email-Adress" type="string" defaultValue="mathieu@ledoux.ch" />
+          <camunda:formField id="age" label="Age" type="long" />
+          <camunda:formField id="zipcode" label="ZipCode" type="long" />
+          <camunda:formField id="addictions" label="Addictions" type="string" />
+          <camunda:formField id="health_conditions" label="Health Conditions" type="string" />
+          <camunda:formField id="surgery" label="Surgery" type="long" />
+          <camunda:formField id="drugs" label="Drugs" type="boolean" />
+          <camunda:formField id="bmi" label="BMI" type="long" />
+          <camunda:formField id="sport" label="Activity Level (Sport)" type="long" />
+          <camunda:formField id="email" label="Email-Adress" type="string" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_1f4cvpm</bpmn:incoming>
@@ -71,26 +57,10 @@
     <bpmn:userTask id="evaluate_customer_need" name="Evaluate customer need" camunda:candidateGroups="Chatbot">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="model" label="Model" type="enum" defaultValue="telmed">
-            <camunda:value id="telmed" name="Telmed" />
-            <camunda:value id="hmo" name="Family-doctor / HMO" />
-            <camunda:value id="freechoice" name="Free choice of doctor" />
-          </camunda:formField>
-          <camunda:formField id="accident" label="Accident" type="enum" defaultValue="with">
-            <camunda:value id="with" name="with" />
-            <camunda:value id="without" name="without" />
-          </camunda:formField>
-          <camunda:formField id="hospitalisation" label="Hospitalisation" type="enum" defaultValue="general">
-            <camunda:value id="general" name="general" />
-            <camunda:value id="semiprivate" name="semiprivate" />
-            <camunda:value id="private" name="private" />
-          </camunda:formField>
-          <camunda:formField id="supplementary_insurance" label="Supplementary Insurance" type="enum" defaultValue="none">
-            <camunda:value id="light" name="Light" />
-            <camunda:value id="classic" name="Classic" />
-            <camunda:value id="medical_private" name="Medical Private" />
-            <camunda:value id="none" name="None" />
-          </camunda:formField>
+          <camunda:formField id="model" label="Model" type="string" />
+          <camunda:formField id="accident" label="Accident" type="string" />
+          <camunda:formField id="hospitalisation" label="Hospitalisation" type="string" />
+          <camunda:formField id="supplementary_insurance" label="Supplementary Insurance" type="string" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0hzjf01</bpmn:incoming>
@@ -137,9 +107,52 @@
     <bpmn:startEvent id="StartEvent_1" name="Insurance-request" camunda:initiator="Message-Insurance-request">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="lastname" label="Last name" type="string" defaultValue="Last Name" />
-          <camunda:formField id="firstname" label="First Name" type="string" defaultValue="First Name" />
-          <camunda:formField id="age" label="Your age" type="long" defaultValue="18" />
+          <camunda:formField id="gender" label="Gender" type="enum">
+            <camunda:value id="female" name="female" />
+            <camunda:value id="male" name="male" />
+          </camunda:formField>
+          <camunda:formField id="lastname" label="Last Name" type="string" />
+          <camunda:formField id="firstname" label="First Name" type="string" />
+          <camunda:formField id="age" label="Age" type="long" defaultValue="18" />
+          <camunda:formField id="zipcode" label="ZipCode" type="long" defaultValue="1000" />
+          <camunda:formField id="addictions" label="Addictions" type="enum" defaultValue="none">
+            <camunda:value id="smoker" name="Smoker" />
+            <camunda:value id="drug_abuse" name="Drug/Abuse" />
+            <camunda:value id="alcohol" name="Alcohol" />
+            <camunda:value id="none" name="none" />
+          </camunda:formField>
+          <camunda:formField id="health_conditions" label="Health Conditions" type="enum" defaultValue="none">
+            <camunda:value id="none" name="None" />
+            <camunda:value id="weak_immun_system" name="Weak Immun System" />
+            <camunda:value id="cancer" name="Cancer" />
+            <camunda:value id="genetical_defects" name="Genetical Defects" />
+            <camunda:value id="other" name="Other" />
+          </camunda:formField>
+          <camunda:formField id="surgery" label="Surgery" type="long" defaultValue="0" />
+          <camunda:formField id="drugs" label="Drugs" type="boolean" defaultValue="false" />
+          <camunda:formField id="bmi" label="BMI" type="long" defaultValue="22" />
+          <camunda:formField id="sport" label="Activity Level (Sport)" type="long" defaultValue="2" />
+          <camunda:formField id="email" label="Email-Adress" type="string" defaultValue="mathieu@ledoux.ch" />
+          <camunda:formField id="model" label="Model" type="enum" defaultValue="telmed">
+            <camunda:value id="telmed" name="Telmed" />
+            <camunda:value id="hmo" name="Family-doctor / HMO" />
+            <camunda:value id="freechoice" name="Free choice of doctor" />
+          </camunda:formField>
+          <camunda:formField id="accident" label="Accident" type="enum" defaultValue="with">
+            <camunda:value id="with" name="with" />
+            <camunda:value id="without" name="without" />
+          </camunda:formField>
+          <camunda:formField id="hospitalisation" label="Hospitalisation" type="enum" defaultValue="general">
+            <camunda:value id="general" name="general" />
+            <camunda:value id="semiprivate" name="semiprivate" />
+            <camunda:value id="private" name="private" />
+          </camunda:formField>
+          <camunda:formField id="supplementary_insurance" label="Supplementary Insurance" type="enum" defaultValue="none">
+            <camunda:value id="light" name="Light" />
+            <camunda:value id="classic" name="Classic" />
+            <camunda:value id="medical_private" name="Medical Private" />
+            <camunda:value id="none" name="None" />
+          </camunda:formField>
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:outgoing>SequenceFlow_1f4cvpm</bpmn:outgoing>
